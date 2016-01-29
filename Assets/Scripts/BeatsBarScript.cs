@@ -14,6 +14,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public int barLengthSeconds = 3;
 	public float threshold = 0.5f;
 	public float accuracy = 0.2f;
+	public int beatSkip = 2;
 	public Queue<float> beatVals;
 	public Queue<Beat> curBeats;
 
@@ -77,15 +78,18 @@ public class BeatsBarScript : MonoBehaviour {
 	}
 
 	Queue<float> getBeatVals(string filename) {
+		int skipped = 0;
 		string line;
 		Queue<float> q = new Queue<float>();
 		// Read the file and display it line by line.
 		System.IO.StreamReader file = new System.IO.StreamReader(filename);
 		while((line = file.ReadLine()) != null)
 		{
-			float beat = float.Parse (line);
-			//Debug.Log (beat);
-			q.Enqueue(beat);		
+			skipped++;
+			if (skipped % beatSkip == 0) {
+				float beat = float.Parse (line);
+				q.Enqueue (beat);
+			}
 		}
 		file.Close();
 		return q;

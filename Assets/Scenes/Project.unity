@@ -1546,7 +1546,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 70e7520b375ea42f7b4d680d2633ead7, type: 3}
+  m_audioClip: {fileID: 8300000, guid: f38e1da18a82246999edfcf737f2ddf6, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1630,6 +1630,7 @@ MonoBehaviour:
   barLengthSeconds: 3
   threshold: 0.5
   accuracy: 0.2
+  beatSkip: 2
 --- !u!1 &1821138238
 GameObject:
   m_ObjectHideFlags: 0
