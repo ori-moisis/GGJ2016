@@ -5,59 +5,75 @@ using System.Collections.Generic;
 
 public class BeatsBarScript : MonoBehaviour {
 
-	public GameObject beat;
 	public GameObject moveManagerObject;
 	MoveManager moveManager;
 	public AudioSource aud;
+	public GameObject mark;
+	public GameObject rectangle;
+	public GameObject beatPrefab;
 	public int barLengthSeconds = 3;
 	public float threshold = 0.5f;
 	public float accuracy = 0.2f;
 	public Queue<float> beatVals;
-	public Queue<float> curBeatVals;
 	public Queue<Beat> curBeats;
+
+	private Vector3 barLeft;
 
 
 	// Use this for initialization
 	void Start () {		
 		// Audio	
-		aud = gameObject.GetComponent<AudioSource> ();
+		aud = GetComponent<AudioSource> ();
 		aud.Play ();
 		beatVals = getBeatVals ("Assets/Audio/beats.txt");
-		curBeatVals = new Queue<float> ();
-		List<GameObject> squares = new List<GameObject> ();
+		curBeats = new Queue<Beat> ();
+
 		// Move manager
 		moveManager = moveManagerObject.GetComponent<MoveManager>();
+
+		Bounds barBounds = rectangle.GetComponent<Renderer> ().bounds;
+		barLeft = new Vector3 (barBounds.min.x, barBounds.center.y);
+
+		mark.transform.position = barLeft + new Vector3 (secondsToOffset(0.0f), 0.0f);
 	}
 
 	// Update is called once per frame
 	void Update () {
 		updateBeats ();
+	}
+
+	void OnGUI() {
 		updateSquares ();
 	}
 
 	void updateBeats() {
 		float t = aud.time;
 		while (beatVals.Count != 0 && beatVals.Peek () <= t + barLengthSeconds) {
-			curBeatVals.Enqueue (beatVals.Dequeue ());
+			float beatTime = beatVals.Dequeue ();
+			GameObject obj = Instantiate (beatPrefab) as GameObject;
+			curBeats.Enqueue (new Beat(beatTime, obj));
 		}
-		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
-			curBeatVals.Dequeue ();
+
+		while (curBeats.Count != 0 && curBeats.Peek ().RelativeTime(t) <= -threshold) {
+			Beat beat = curBeats.Dequeue ();
+			Destroy (beat.obj);
+
 			// Consider this case as a miss, and send "miss" to Barak the shark
 			moveManager.handleAction(KeyAction.Miss, 0f);
-		}
-		curBeats = new Queue<Beat> ();
-		foreach (float f in curBeatVals) {
-			curBeats.Enqueue (new Beat(f-t, false));
-		}
-			
-		string s = "";
-		foreach (Beat b in curBeats) {
-			s = s + " " + b.val.ToString();
 		}
 	}
 
 	void updateSquares() {
-		
+		foreach (Beat beat in curBeats) {
+			beat.RelativeTime (aud.time);
+			float offsetX = secondsToOffset (beat.relativeTime);
+			beat.obj.transform.position = barLeft + new Vector3(offsetX, 0.0f);
+			beat.Show ();
+		}
+	}
+
+	float secondsToOffset(float relativeTime) {
+		return (relativeTime + threshold) / (barLengthSeconds + threshold) * rectangle.transform.localScale.x;
 	}
 
 	Queue<float> getBeatVals(string filename) {
@@ -77,10 +93,10 @@ public class BeatsBarScript : MonoBehaviour {
 
 	public void input(KeyAction k) {
 		float acc = 0;
-		if (Mathf.Abs (curBeats.Peek ().val) <= accuracy) {
+		if (Mathf.Abs (curBeats.Peek ().RelativeTime(aud.time)) <= accuracy) {
 			// TODO: animate removal
 			Beat b = curBeats.Dequeue ();
-			acc = Mathf.Abs (b.val);
+			acc = Mathf.Abs (b.relativeTime);
 		} else {
 			k = KeyAction.Fail;
 		}			
@@ -94,12 +110,28 @@ public class BeatsBarScript : MonoBehaviour {
 }
 
 public class Beat {
-	public float val;
+	// Times are in seconds
+	public float beatTime;
+	public float relativeTime;
 	public bool isCombo;
+	public GameObject obj;
 
-	public Beat(float val, bool isCombo) {
-		this.val = val;
-		this.isCombo = isCombo;
+	public Beat(float beatTime, GameObject obj) {
+		this.beatTime = beatTime;
+		this.relativeTime = beatTime;
+		this.isCombo = false;
+		this.obj = obj;
+		this.obj.SetActive (false);
+		this.obj.GetComponent<Renderer> ().enabled = false;
+	}
+
+	public void Show() {
+		this.obj.SetActive (true);
+		this.obj.GetComponent<Renderer> ().enabled = true;
+	}
+
+	public float RelativeTime(float currentTime) {
+		return (this.relativeTime = this.beatTime - currentTime);
 	}
 }
 
