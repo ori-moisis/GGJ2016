@@ -13,20 +13,16 @@ public class BeatsBarScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {		
-		
+	void Start () {				
 		aud = gameObject.GetComponent<AudioSource> ();
 		aud.Play ();
-
 		allBeats = getBeats ("Assets/Audio/beats.txt");
 		curBeats = new Queue<float> ();
-
 	}
 
 	// Update is called once per frame
 	void Update () {
-
-
+		updateBeats ();
 	}
 
 	void updateBeats() {
@@ -58,7 +54,7 @@ public class BeatsBarScript : MonoBehaviour {
 		while((line = file.ReadLine()) != null)
 		{
 			float beat = float.Parse (line);
-			Debug.Log (beat);
+			//Debug.Log (beat);
 			q.Enqueue(beat);		
 		}
 		file.Close();
