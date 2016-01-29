@@ -6,6 +6,8 @@ using System.Collections.Generic;
 public class BeatsBarScript : MonoBehaviour {
 
 	public GameObject beat;
+	public GameObject moveManagerObject;
+	MoveManager moveManager;
 	public AudioSource aud;
 	public int barLengthSeconds = 3;
 	public float threshold = 0.5f;
@@ -16,19 +18,15 @@ public class BeatsBarScript : MonoBehaviour {
 
 
 	// Use this for initialization
-	void Start () {			
+	void Start () {		
 		// Audio	
 		aud = gameObject.GetComponent<AudioSource> ();
 		aud.Play ();
-
 		beatVals = getBeatVals ("Assets/Audio/beats.txt");
 		curBeatVals = new Queue<float> ();
 		List<GameObject> squares = new List<GameObject> ();
-//		for (int i = 0; i <= 10; i++) {
-//			GameObject square = Instantiate (beat) as GameObject;
-//			square.transform.position = new Vector3 (i, 0, 0);
-//			squares.Add (square);
-//		}
+		// Move manager
+		moveManager = moveManagerObject.GetComponent<MoveManager>();
 	}
 
 	// Update is called once per frame
@@ -44,7 +42,8 @@ public class BeatsBarScript : MonoBehaviour {
 		}
 		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
 			curBeatVals.Dequeue ();
-			// TODO: Consider this case as a miss, and send "miss" to Barak the shark
+			// Consider this case as a miss, and send "miss" to Barak the shark
+			moveManager.handleAction(OurCoolKey.Miss, 0);
 		}
 		curBeats = new Queue<Beat> ();
 		foreach (float f in curBeatVals) {
@@ -87,7 +86,10 @@ public class BeatsBarScript : MonoBehaviour {
 		}			
 		Debug.Log (k);
 		Debug.Log (acc);
-		// TODO: Call BarakMethod(k, acc)
+		moveManager.handleAction (k, acc);
+	}
+
+	public void comboHighlightNextBeat() {
 	}
 }
 
