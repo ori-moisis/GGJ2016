@@ -482,7 +482,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 485030, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 2.65
+      value: 3.16
       objectReference: {fileID: 0}
     - target: {fileID: 485030, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: m_LocalPosition.y
@@ -516,6 +516,23 @@ Prefab:
       propertyPath: myPreFab
       value: 
       objectReference: {fileID: 163376, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
+    - target: {fileID: 11419472, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
+      propertyPath: wooweeObject
+      value: 
+      objectReference: {fileID: 1524451768}
+    - target: {fileID: 21279238, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300002, guid: 1fc0c2e530448ad4c9207ac01afc0b8b,
+        type: 3}
+    - target: {fileID: 485030, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 485030, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
   m_IsPrefabParent: 0
@@ -577,7 +594,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 1fc0c2e530448ad4c9207ac01afc0b8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -588,8 +605,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524451768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.88, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -622,6 +639,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dd4fe6cad573a40a1b74743b117c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  beatBar: {fileID: 0}
+  wooweeObject: {fileID: 1524451768}
 --- !u!212 &1565929559
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -649,7 +668,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300002, guid: 1fc0c2e530448ad4c9207ac01afc0b8b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -660,8 +679,8 @@ Transform:
   m_PrefabInternal: {fileID: 1200776985}
   m_GameObject: {fileID: 1565929557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.65, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 3.16, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
