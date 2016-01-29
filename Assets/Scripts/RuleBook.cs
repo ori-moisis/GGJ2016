@@ -5,17 +5,17 @@ using System;
 public interface IRule
 {
     // Returns the difference in affection caused by this rule due to lastMove and wooee.
-	double getAffectionDelta(DanceMove lastMove, double accuracy, WooeeController wooee, PlayerController player);
+	float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player);
 }
 
 public class OctopusRule : IRule
 {
-	public double getAffectionDelta(DanceMove lastMove, double accuracy, WooeeController wooee, PlayerController player)
+	public float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player)
     {
 		if (player.danceMoves.Count < 2 || lastMove != (DanceMove)player.danceMoves [player.danceMoves.Count - 2]) {
-			return 0.1;
+			return 0.1f;
 		} else {
-			return -0.1;
+			return -0.1f;
 		}
     }
 }
@@ -29,9 +29,9 @@ public class RuleBook : IRule {
 		};
 	}
 
-	public double getAffectionDelta(DanceMove lastMove, double accuracy, WooeeController wooee, PlayerController player)
+	public float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player)
     {
-        double sum = 0;
+        float sum = 0f;
 		foreach (IRule rule in rules)
         {
 			sum += rule.getAffectionDelta(lastMove, accuracy, wooee, player);

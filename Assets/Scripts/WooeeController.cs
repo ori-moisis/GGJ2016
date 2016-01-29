@@ -7,7 +7,7 @@ public enum Hat { Pimp, Party };
 
 public class WooeeController : MonoBehaviour {
     // [0,1]
-    public double affection;
+    public float affection;
 
     // characteristics
     public bool randomizeCharacteristics;
@@ -37,7 +37,7 @@ public class WooeeController : MonoBehaviour {
         hat = Hat.Pimp;
     }
 
-	public void reactToMove(DanceMove danceMove, double accuracy, PlayerController player) {
+	public void reactToMove(DanceMove danceMove, float accuracy, PlayerController player) {
 		affection += ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
     }
 }

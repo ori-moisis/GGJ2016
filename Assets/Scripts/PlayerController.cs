@@ -26,9 +26,9 @@ public class PlayerController : MonoBehaviour {
 		}
     }
 
-	double getMoveAccuracy() {
+	float getMoveAccuracy() {
 		// TODO: use the beat bar script
-		return 0.75;
+		return 0.75f;
 	}
 
 	public void HandleButton(string moveType) {
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour {
 			break;
 		}
 
-		double moveAcc = getMoveAccuracy ();
+		float moveAcc = getMoveAccuracy ();
 		doDanceMove (danceMove, moveAcc);
 	}
 
@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 
-	void doDanceMove(DanceMove danceMove, double accuracy) {
+	void doDanceMove(DanceMove danceMove, float accuracy) {
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);
