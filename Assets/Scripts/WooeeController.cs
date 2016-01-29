@@ -2,8 +2,10 @@
 using System.Collections;
 
 // Characteristics types
-public enum Animal { Cat, Octopus };
-public enum Hat { Pimp, Party };
+public enum CharacterType { Cat };
+public enum CharacterTrait { A, B ,C };
+public enum CharacterSize { Giant, Normal, Dwarf };
+public enum CharacterColor { Blue, Red, Normal };
 
 public class WooeeController : MonoBehaviour {
     // [0,1]
@@ -11,8 +13,10 @@ public class WooeeController : MonoBehaviour {
 
     // characteristics
     public bool randomizeCharacteristics;
-    public Animal animal;
-    public Hat hat;
+    public CharacterType type;
+    public CharacterTrait trait;
+	public CharacterSize size;
+	public CharacterColor color;
 
     //rules
 	public GameObject ruleBookObject;
@@ -34,8 +38,10 @@ public class WooeeController : MonoBehaviour {
 
     void generateRandomCharacteristics() {
         // random placeholder
-        animal = Animal.Octopus;
-        hat = Hat.Pimp;
+		type = CharacterType.Cat;
+		trait = CharacterTrait.A;
+		size = CharacterSize.Normal;
+		color = CharacterColor.Normal;
     }
 
 	public void reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
