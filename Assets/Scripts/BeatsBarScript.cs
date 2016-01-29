@@ -18,7 +18,7 @@ public class BeatsBarScript : MonoBehaviour {
 		aud = gameObject.GetComponent<AudioSource> ();
 		aud.Play ();
 
-		allBeats = getBeats ("Assets/beats.txt");
+		allBeats = getBeats ("Assets/Audio/beats.txt");
 		curBeats = new Queue<float> ();
 
 	}
