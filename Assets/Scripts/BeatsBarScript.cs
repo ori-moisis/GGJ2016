@@ -9,6 +9,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public AudioSource aud;
 	public int barLengthSeconds = 3;
 	public float threshold = 0.5f;
+	public float accuracy = 0.2f;
 	public Queue<float> beatVals;
 	public Queue<float> curBeatVals;
 	public Queue<Beat> curBeats;
@@ -43,6 +44,7 @@ public class BeatsBarScript : MonoBehaviour {
 		}
 		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
 			curBeatVals.Dequeue ();
+			// TODO: Consider this case as a miss, and send "miss" to Barak the shark
 		}
 		curBeats = new Queue<Beat> ();
 		foreach (float f in curBeatVals) {
@@ -73,6 +75,20 @@ public class BeatsBarScript : MonoBehaviour {
 		file.Close();
 		return q;
 	}
+
+	public void input(OurCoolKey k) {
+		float acc = 0;
+		if (Mathf.Abs (curBeats.Peek ().val) <= accuracy) {
+			// TODO: animate removal
+			Beat b = curBeats.Dequeue ();
+			acc = Mathf.Abs (b.val);
+		} else {
+			k = OurCoolKey.Fail;
+		}			
+		Debug.Log (k);
+		Debug.Log (acc);
+		// TODO: Call BarakMethod(k, acc)
+	}
 }
 
 public class Beat {
@@ -84,3 +100,5 @@ public class Beat {
 		this.isCombo = isCombo;
 	}
 }
+
+public enum OurCoolKey {A, B, C, D, Miss, Fail}

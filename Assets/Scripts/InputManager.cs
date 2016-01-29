@@ -34,5 +34,7 @@ public class InputManager : MonoBehaviour {
 	public void HandleButtonPress(string type) {
 		Debug.Log ("InputManager got button " + type);
 		// TODO: send input to the beat bar
+
+		beatBar.input(OurCoolKey.A);
 	}
 }
