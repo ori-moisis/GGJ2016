@@ -31,14 +31,14 @@ public class MoveManager : MonoBehaviour {
         };
     }
 
-	public void handleAction(OurCoolKey action, float accuracy) {
+	public void handleAction(KeyAction action, float accuracy) {
         player.doDanceMove(moveForNextDanceMove(moveForAction(action)), accuracy);
         if (isOneMoveFromCombo()) {
             beatsBar.comboHighlightNextBeat();
         }
     }
 
-	DanceMove moveForAction(OurCoolKey action) {
+	DanceMove moveForAction(KeyAction action) {
         return DanceMove.Jump;
     }
 

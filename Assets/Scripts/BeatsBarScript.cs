@@ -43,7 +43,7 @@ public class BeatsBarScript : MonoBehaviour {
 		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
 			curBeatVals.Dequeue ();
 			// Consider this case as a miss, and send "miss" to Barak the shark
-			moveManager.handleAction(OurCoolKey.Miss, 0f);
+			moveManager.handleAction(KeyAction.Miss, 0f);
 		}
 		curBeats = new Queue<Beat> ();
 		foreach (float f in curBeatVals) {
@@ -75,14 +75,14 @@ public class BeatsBarScript : MonoBehaviour {
 		return q;
 	}
 
-	public void input(OurCoolKey k) {
+	public void input(KeyAction k) {
 		float acc = 0;
 		if (Mathf.Abs (curBeats.Peek ().val) <= accuracy) {
 			// TODO: animate removal
 			Beat b = curBeats.Dequeue ();
 			acc = Mathf.Abs (b.val);
 		} else {
-			k = OurCoolKey.Fail;
+			k = KeyAction.Fail;
 		}			
 		Debug.Log (k);
 		Debug.Log (acc);
@@ -103,4 +103,4 @@ public class Beat {
 	}
 }
 
-public enum OurCoolKey {A, B, C, D, Miss, Fail}
+public enum KeyAction {A, B, C, D, Miss, Fail}
