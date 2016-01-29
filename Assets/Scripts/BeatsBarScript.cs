@@ -97,6 +97,7 @@ public class BeatsBarScript : MonoBehaviour {
 			// TODO: animate removal
 			Beat b = curBeats.Dequeue ();
 			acc = Mathf.Abs (b.relativeTime);
+			Destroy (b.obj);
 		} else {
 			k = KeyAction.Fail;
 		}			
