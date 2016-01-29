@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour {
 		
 	}
 
-	void doDanceMove(DanceMove danceMove, float accuracy) {
+	public void doDanceMove(DanceMove danceMove, float accuracy) {
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);
