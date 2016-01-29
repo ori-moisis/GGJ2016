@@ -1204,7 +1204,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6dd4fe6cad573a40a1b74743b117c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beatBar: {fileID: 0}
   wooweeObject: {fileID: 1524451768}
 --- !u!212 &1565929559
 SpriteRenderer:
