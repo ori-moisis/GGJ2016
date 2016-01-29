@@ -8,7 +8,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public GameObject beat;
 	public AudioSource aud;
 	public int barLengthSeconds = 3;
-	public float threshold = 0.5;
+	public float threshold = 0.5f;
 	public Queue<float> beatVals;
 	public Queue<float> curBeatVals;
 	public Queue<Beat> curBeats;
@@ -48,13 +48,11 @@ public class BeatsBarScript : MonoBehaviour {
 		foreach (float f in curBeatVals) {
 			curBeats.Enqueue (new Beat(f-t, false));
 		}
-
-		Debug.Log (t);
+			
 		string s = "";
 		foreach (Beat b in curBeats) {
 			s = s + " " + b.val.ToString();
 		}
-		Debug.Log (s);
 	}
 
 	void updateSquares() {
