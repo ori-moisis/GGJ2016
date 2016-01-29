@@ -2,6 +2,9 @@
 using System.Collections;
 
 // Characteristics types
+using System;
+
+
 public enum CharacterType { Cat };
 public enum CharacterTrait { A, B ,C };
 public enum CharacterSize { Giant, Normal, Dwarf };
@@ -36,12 +39,18 @@ public class WooeeController : MonoBehaviour {
 	
 	}
 
+	// http://stackoverflow.com/a/3132139
+	static T RandomEnumValue<T> ()
+	{
+		var v = Enum.GetValues (typeof (T));
+		return (T) v.GetValue (new System.Random ().Next(v.Length));
+	}
+
     void generateRandomCharacteristics() {
-        // random placeholder
-		type = CharacterType.Cat;
-		trait = CharacterTrait.A;
-		size = CharacterSize.Normal;
-		color = CharacterColor.Normal;
+		type = RandomEnumValue<CharacterType> ();
+		trait = RandomEnumValue<CharacterTrait> ();
+		size = RandomEnumValue<CharacterSize> ();
+		color = RandomEnumValue<CharacterColor> ();
     }
 
 	public void reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
