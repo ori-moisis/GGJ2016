@@ -38,18 +38,22 @@ public class MoveManager : MonoBehaviour {
         }
     }
 
-	DanceMove moveForAction(OurCoolKey action)
-    {
+	DanceMove moveForAction(OurCoolKey action) {
         return DanceMove.Jump;
     }
 
     // returns the combo dance move that will be completed with `move` or `move` if it does not complete a combo.
     public DanceMove moveForNextDanceMove(DanceMove move) {
+        ArrayList previousMoves = player.danceMoves;
+
+        if (previousMoves.Count < 1) {
+            return move;
+        }
+
         if (!isOneMoveFromCombo()) {
             return move;
         }
 
-        ArrayList previousMoves = player.danceMoves;
         foreach (Combo combo in combos) {
             int comboLength = combo.moveSequence.Count;
             ArrayList relevantMoves = previousMoves.GetRange(previousMoves.Count - (comboLength), comboLength - 1);
@@ -63,6 +67,11 @@ public class MoveManager : MonoBehaviour {
 
     bool isOneMoveFromCombo() {
         ArrayList previousMoves = player.danceMoves;
+
+        if (previousMoves.Count < 1) {
+            return false;
+        }
+
         foreach (Combo combo in combos) {
             int comboLength = combo.moveSequence.Count;
             ArrayList relevantPreviousMoves = previousMoves.GetRange(previousMoves.Count - (comboLength - 1), comboLength - 1);

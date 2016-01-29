@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	public void doDanceMove(DanceMove danceMove, float accuracy) {
+        Debug.Log("Player got dance move:" + danceMove + " accuracy:" + accuracy);
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);

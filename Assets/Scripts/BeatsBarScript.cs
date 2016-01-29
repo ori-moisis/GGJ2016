@@ -43,7 +43,7 @@ public class BeatsBarScript : MonoBehaviour {
 		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
 			curBeatVals.Dequeue ();
 			// Consider this case as a miss, and send "miss" to Barak the shark
-			moveManager.handleAction(OurCoolKey.Miss, 0);
+			moveManager.handleAction(OurCoolKey.Miss, 0f);
 		}
 		curBeats = new Queue<Beat> ();
 		foreach (float f in curBeatVals) {
