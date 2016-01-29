@@ -33,8 +33,19 @@ public class InputManager : MonoBehaviour {
 
 	public void HandleButtonPress(string type) {
 		Debug.Log ("InputManager got button " + type);
-		// TODO: send input to the beat bar
-
-		beatBar.input(KeyAction.A);
+		switch (type) {
+		case "A":
+			beatBar.input (KeyAction.A);
+			break;
+		case "B":
+			beatBar.input (KeyAction.B);
+			break;
+		case "C":
+			beatBar.input (KeyAction.C);
+			break;
+		case "D":
+			beatBar.input (KeyAction.D);
+			break;				
+		}
 	}
 }
