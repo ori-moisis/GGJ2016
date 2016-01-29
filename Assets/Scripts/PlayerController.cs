@@ -19,11 +19,11 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
     }
 		
-	void animateDanceMove(DanceMove danceMove) {
+	void animateDanceMove(KeyAction danceMove) {
 		
 	}
 
-	public void doDanceMove(DanceMove danceMove, float accuracy) {
+	public void doDanceMove(KeyAction danceMove, float accuracy) {
         Debug.Log("Player got dance move:" + danceMove + " accuracy:" + accuracy);
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);

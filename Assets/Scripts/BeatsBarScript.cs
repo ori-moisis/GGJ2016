@@ -13,7 +13,6 @@ public class BeatsBarScript : MonoBehaviour {
 	public GameObject beatPrefab;
 	public int barLengthSeconds = 3;
 	public float threshold = 0.5f;
-	public float accuracy = 0.2f;
 	public int beatSkip = 2;
 	public Queue<float> beatVals;
 	public Queue<Beat> curBeats;
@@ -97,10 +96,10 @@ public class BeatsBarScript : MonoBehaviour {
 
 	public void input(KeyAction k) {
 		float acc = 0;
-		if (Mathf.Abs (curBeats.Peek ().RelativeTime(aud.time)) <= accuracy) {
+		if (Mathf.Abs (curBeats.Peek ().RelativeTime(aud.time)) <= threshold) {
 			// TODO: animate removal
 			Beat b = curBeats.Dequeue ();
-			acc = Mathf.Abs (b.relativeTime);
+			acc = Mathf.Abs (b.relativeTime) / threshold;
 			Destroy (b.obj);
 		} else {
 			k = KeyAction.Fail;

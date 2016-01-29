@@ -15,12 +15,13 @@ public class WooeeController : MonoBehaviour {
     public Hat hat;
 
     //rules
+	public GameObject ruleBookObject;
     RuleBook ruleBook;
 
 
     // Use this for initialization
     void Start () {
-        ruleBook = new RuleBook();
+		ruleBook = ruleBookObject.GetComponent<RuleBook> ();
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
@@ -37,7 +38,7 @@ public class WooeeController : MonoBehaviour {
         hat = Hat.Pimp;
     }
 
-	public void reactToMove(DanceMove danceMove, float accuracy, PlayerController player) {
+	public void reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
 		affection += ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
     }
 }

@@ -5,31 +5,33 @@ using System;
 public interface IRule
 {
     // Returns the difference in affection caused by this rule due to lastMove and wooee.
-	float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player);
+	float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player);
 }
 
-public class OctopusRule : IRule
+public class BaseRule : IRule
 {
-	public float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
     {
-		if (player.danceMoves.Count < 2 || lastMove != (DanceMove)player.danceMoves [player.danceMoves.Count - 2]) {
-			return 0.1f;
+		if (player.danceMoves.Count < 2 || lastMove != (KeyAction)player.danceMoves [player.danceMoves.Count - 2]) {
+			return 1 * accuracy;
 		} else {
-			return -0.1f;
+			return -1 * accuracy;
 		}
     }
 }
 
-public class RuleBook : IRule {
+public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
+
+	public static float baseScore = 0.1f;
 
 	public RuleBook() {
 		rules = new IRule[] {
-			new OctopusRule()
+			new BaseRule()
 		};
 	}
 
-	public float getAffectionDelta(DanceMove lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
     {
         float sum = 0f;
 		foreach (IRule rule in rules)

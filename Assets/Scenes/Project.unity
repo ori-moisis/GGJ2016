@@ -832,6 +832,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 642586476}
+  - {fileID: 1718921998}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &1014717043
@@ -1232,6 +1233,7 @@ MonoBehaviour:
   randomizeCharacteristics: 0
   animal: 0
   hat: 0
+  ruleBookObject: {fileID: 1718921997}
 --- !u!212 &1524451770
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1546,7 +1548,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: f38e1da18a82246999edfcf737f2ddf6, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 586f748ab2590496eb6c85fa9ae74750, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -1628,9 +1630,47 @@ MonoBehaviour:
   rectangle: {fileID: 1821138238}
   beatPrefab: {fileID: 176870, guid: 86945c58279a14aada98cd201f12c718, type: 2}
   barLengthSeconds: 3
-  threshold: 0.5
-  accuracy: 0.2
+  threshold: 0.1
   beatSkip: 2
+--- !u!1 &1718921997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1718921998}
+  - 114: {fileID: 1718921999}
+  m_Layer: 0
+  m_Name: RuleBook
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1718921998
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718921997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886213208}
+  m_RootOrder: 1
+--- !u!114 &1718921999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1718921997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6cbe70e51b2f42458fa7778c36b0c9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1821138238
 GameObject:
   m_ObjectHideFlags: 0

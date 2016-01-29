@@ -2,15 +2,13 @@
 using System.Collections;
 using System.Linq;
 
-public enum DanceMove { Jump, Kick }
-
 // maps actions to dance moves, including replacing relevant moves with combos if applicable.
 public class MoveManager : MonoBehaviour {
     public class Combo : object {
         public ArrayList moveSequence;
-        public DanceMove comboMove;
+        public KeyAction comboMove;
 
-        public Combo(DanceMove comboMove, DanceMove[] moveSequence) {
+        public Combo(KeyAction comboMove, KeyAction[] moveSequence) {
             this.comboMove = comboMove;
             this.moveSequence = new ArrayList(moveSequence);
         }
@@ -27,23 +25,22 @@ public class MoveManager : MonoBehaviour {
         player = playerObject.GetComponent<PlayerController>();
         beatsBar = beatsBarObject.GetComponent<BeatsBarScript>();
         combos = new Combo[] {
-            new Combo(DanceMove.Jump, new DanceMove[] { DanceMove.Jump })
+			new Combo(KeyAction.A, new KeyAction[] { KeyAction.A }),
+			new Combo(KeyAction.B, new KeyAction[] { KeyAction.B }),
+			new Combo(KeyAction.C, new KeyAction[] { KeyAction.C }),
+			new Combo(KeyAction.D, new KeyAction[] { KeyAction.D })
         };
     }
 
-	public void handleAction(KeyAction action, float accuracy) {
-        player.doDanceMove(moveForNextDanceMove(moveForAction(action)), accuracy);
+	public void handleAction( KeyAction action, float accuracy) {
+        player.doDanceMove(moveForNextDanceMove(action), accuracy);
         if (isOneMoveFromCombo()) {
             beatsBar.comboHighlightNextBeat();
         }
     }
 
-	DanceMove moveForAction(KeyAction action) {
-        return DanceMove.Jump;
-    }
-
     // returns the combo dance move that will be completed with `move` or `move` if it does not complete a combo.
-    public DanceMove moveForNextDanceMove(DanceMove move) {
+    public KeyAction moveForNextDanceMove(KeyAction move) {
         ArrayList previousMoves = player.danceMoves;
 
         if (previousMoves.Count < 1) {
