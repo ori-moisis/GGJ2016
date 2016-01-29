@@ -5,48 +5,63 @@ using System.Collections.Generic;
 
 public class BeatsBarScript : MonoBehaviour {
 
+	public GameObject beat;
 	public AudioSource aud;
 	public int barLengthSeconds = 3;
-	public Queue<float> allBeats;
-	public Queue<float> curBeats;
-	public Queue<float> curBeatsRelative;
+	public float threshold = 0.5;
+	public Queue<float> beatVals;
+	public Queue<float> curBeatVals;
+	public Queue<Beat> curBeats;
 
 
 	// Use this for initialization
-	void Start () {				
+	void Start () {			
+		// Audio	
 		aud = gameObject.GetComponent<AudioSource> ();
 		aud.Play ();
-		allBeats = getBeats ("Assets/Audio/beats.txt");
-		curBeats = new Queue<float> ();
+
+		beatVals = getBeatVals ("Assets/Audio/beats.txt");
+		curBeatVals = new Queue<float> ();
+		List<GameObject> squares = new List<GameObject> ();
+//		for (int i = 0; i <= 10; i++) {
+//			GameObject square = Instantiate (beat) as GameObject;
+//			square.transform.position = new Vector3 (i, 0, 0);
+//			squares.Add (square);
+//		}
 	}
 
 	// Update is called once per frame
 	void Update () {
 		updateBeats ();
+		updateSquares ();
 	}
 
 	void updateBeats() {
 		float t = aud.time;
-		while (allBeats.Count != 0 && allBeats.Peek () <= t + barLengthSeconds) {
-			curBeats.Enqueue (allBeats.Dequeue ());
+		while (beatVals.Count != 0 && beatVals.Peek () <= t + barLengthSeconds) {
+			curBeatVals.Enqueue (beatVals.Dequeue ());
 		}
-		while (curBeats.Count != 0 && curBeats.Peek () < t) {
-			curBeats.Dequeue ();
+		while (curBeatVals.Count != 0 && curBeatVals.Peek () < t - threshold) {
+			curBeatVals.Dequeue ();
 		}
-		curBeatsRelative = new Queue<float> ();
-		foreach (float f in curBeats) {
-			curBeatsRelative.Enqueue (f-t);
+		curBeats = new Queue<Beat> ();
+		foreach (float f in curBeatVals) {
+			curBeats.Enqueue (new Beat(f-t, false));
 		}
 
 		Debug.Log (t);
 		string s = "";
-		foreach (float f in curBeatsRelative) {
-			s = s + " " + f.ToString ();
+		foreach (Beat b in curBeats) {
+			s = s + " " + b.val.ToString();
 		}
 		Debug.Log (s);
 	}
 
-	Queue<float> getBeats(string filename) {
+	void updateSquares() {
+		
+	}
+
+	Queue<float> getBeatVals(string filename) {
 		string line;
 		Queue<float> q = new Queue<float>();
 		// Read the file and display it line by line.
@@ -59,5 +74,15 @@ public class BeatsBarScript : MonoBehaviour {
 		}
 		file.Close();
 		return q;
+	}
+}
+
+public class Beat {
+	public float val;
+	public bool isCombo;
+
+	public Beat(float val, bool isCombo) {
+		this.val = val;
+		this.isCombo = isCombo;
 	}
 }
