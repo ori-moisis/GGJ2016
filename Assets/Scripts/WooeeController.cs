@@ -37,7 +37,7 @@ public class WooeeController : MonoBehaviour {
         hat = Hat.Pimp;
     }
 
-    public void reactToMove(DanceMove danceMove) {
-        affection += ruleBook.getAffectionDelta(danceMove, this);
+	public void reactToMove(DanceMove danceMove, double accuracy, PlayerController player) {
+		affection += ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
     }
 }

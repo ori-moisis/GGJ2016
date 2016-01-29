@@ -1,0 +1,953 @@
+fileFormatVersion: 2
+guid: 1fc0c2e530448ad4c9207ac01afc0b8b
+timeCreated: 1454079815
+licenseType: Free
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: street_fighter_characters_by_reinfall-d3gjdvy_0
+    21300002: street_fighter_characters_by_reinfall-d3gjdvy_1
+    21300004: street_fighter_characters_by_reinfall-d3gjdvy_2
+    21300006: street_fighter_characters_by_reinfall-d3gjdvy_3
+    21300008: street_fighter_characters_by_reinfall-d3gjdvy_4
+    21300010: street_fighter_characters_by_reinfall-d3gjdvy_5
+    21300012: street_fighter_characters_by_reinfall-d3gjdvy_6
+    21300014: street_fighter_characters_by_reinfall-d3gjdvy_7
+    21300016: street_fighter_characters_by_reinfall-d3gjdvy_8
+    21300018: street_fighter_characters_by_reinfall-d3gjdvy_9
+    21300020: street_fighter_characters_by_reinfall-d3gjdvy_10
+    21300022: street_fighter_characters_by_reinfall-d3gjdvy_11
+    21300024: street_fighter_characters_by_reinfall-d3gjdvy_12
+    21300026: street_fighter_characters_by_reinfall-d3gjdvy_13
+    21300028: street_fighter_characters_by_reinfall-d3gjdvy_14
+    21300030: street_fighter_characters_by_reinfall-d3gjdvy_15
+    21300032: street_fighter_characters_by_reinfall-d3gjdvy_16
+    21300034: street_fighter_characters_by_reinfall-d3gjdvy_17
+    21300036: street_fighter_characters_by_reinfall-d3gjdvy_18
+    21300038: street_fighter_characters_by_reinfall-d3gjdvy_19
+    21300040: street_fighter_characters_by_reinfall-d3gjdvy_20
+    21300042: street_fighter_characters_by_reinfall-d3gjdvy_21
+    21300044: street_fighter_characters_by_reinfall-d3gjdvy_22
+    21300046: street_fighter_characters_by_reinfall-d3gjdvy_23
+    21300048: street_fighter_characters_by_reinfall-d3gjdvy_24
+    21300050: street_fighter_characters_by_reinfall-d3gjdvy_25
+    21300052: street_fighter_characters_by_reinfall-d3gjdvy_26
+    21300054: street_fighter_characters_by_reinfall-d3gjdvy_27
+    21300056: street_fighter_characters_by_reinfall-d3gjdvy_28
+    21300058: street_fighter_characters_by_reinfall-d3gjdvy_29
+    21300060: street_fighter_characters_by_reinfall-d3gjdvy_30
+    21300062: street_fighter_characters_by_reinfall-d3gjdvy_31
+    21300064: street_fighter_characters_by_reinfall-d3gjdvy_32
+    21300066: street_fighter_characters_by_reinfall-d3gjdvy_33
+    21300068: street_fighter_characters_by_reinfall-d3gjdvy_34
+    21300070: street_fighter_characters_by_reinfall-d3gjdvy_35
+    21300072: street_fighter_characters_by_reinfall-d3gjdvy_36
+    21300074: street_fighter_characters_by_reinfall-d3gjdvy_37
+    21300076: street_fighter_characters_by_reinfall-d3gjdvy_38
+    21300078: street_fighter_characters_by_reinfall-d3gjdvy_39
+    21300080: street_fighter_characters_by_reinfall-d3gjdvy_40
+    21300082: street_fighter_characters_by_reinfall-d3gjdvy_41
+    21300084: street_fighter_characters_by_reinfall-d3gjdvy_42
+    21300086: street_fighter_characters_by_reinfall-d3gjdvy_43
+    21300088: street_fighter_characters_by_reinfall-d3gjdvy_44
+    21300090: street_fighter_characters_by_reinfall-d3gjdvy_45
+    21300092: street_fighter_characters_by_reinfall-d3gjdvy_46
+    21300094: street_fighter_characters_by_reinfall-d3gjdvy_47
+    21300096: street_fighter_characters_by_reinfall-d3gjdvy_48
+    21300098: street_fighter_characters_by_reinfall-d3gjdvy_49
+    21300100: street_fighter_characters_by_reinfall-d3gjdvy_50
+    21300102: street_fighter_characters_by_reinfall-d3gjdvy_51
+    21300104: street_fighter_characters_by_reinfall-d3gjdvy_52
+    21300106: street_fighter_characters_by_reinfall-d3gjdvy_53
+    21300108: street_fighter_characters_by_reinfall-d3gjdvy_54
+    21300110: street_fighter_characters_by_reinfall-d3gjdvy_55
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  cubemapConvolution: 0
+  cubemapConvolutionSteps: 7
+  cubemapConvolutionExponent: 1.5
+  seamlessCubemap: 0
+  textureFormat: -1
+  maxTextureSize: 2048
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  rGBM: 0
+  compressionQuality: 50
+  allowsAlphaSplitting: 0
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_0
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 1543
+        width: 104
+        height: 194
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -52, y: 97}
+        - {x: -52, y: -97}
+        - {x: 52, y: -97}
+        - {x: 52, y: 97}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_1
+      rect:
+        serializedVersion: 2
+        x: 307
+        y: 1539
+        width: 93
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -46.5, y: 100}
+        - {x: -46.5, y: -100}
+        - {x: 46.5, y: -100}
+        - {x: 46.5, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_2
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_3
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_4
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 1539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_5
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 1539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_6
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_7
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_8
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_9
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_10
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_11
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_12
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_13
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_14
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_15
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_16
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_17
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_18
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_19
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_20
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_21
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_22
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_23
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_24
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_25
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_26
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_27
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 939
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_28
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_29
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_30
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_31
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_32
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_33
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_34
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 739
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_35
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_36
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_37
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_38
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_39
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_40
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_41
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 539
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_42
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_43
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_44
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_45
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_46
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_47
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_48
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 339
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_49
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_50
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_51
+      rect:
+        serializedVersion: 2
+        x: 462
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_52
+      rect:
+        serializedVersion: 2
+        x: 662
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_53
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_54
+      rect:
+        serializedVersion: 2
+        x: 1062
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    - name: street_fighter_characters_by_reinfall-d3gjdvy_55
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 139
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+    outline: []
+  spritePackingTag: 
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
