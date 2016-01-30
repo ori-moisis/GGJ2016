@@ -2091,7 +2091,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1644708753}
-  m_RootOrder: 1
+  m_RootOrder: 0
 --- !u!212 &1514511435
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2511,6 +2511,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!95 &1565929563
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1565929557}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a14afc18dc8f81a44b66c57759f720fa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1001 &1622306179
 Prefab:
   m_ObjectHideFlags: 0
@@ -2553,24 +2570,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: c5e6f26c4828c47c590ab605ca178c55, type: 2}
   m_IsPrefabParent: 0
-
---- !u!95 &1565929563
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1565929557}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: a14afc18dc8f81a44b66c57759f720fa, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1644708752
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,8 +2597,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 960912307}
   - {fileID: 1514511434}
+  - {fileID: 960912307}
   m_Father: {fileID: 643998391}
   m_RootOrder: 2
 --- !u!82 &1644708754
@@ -2696,6 +2695,7 @@ MonoBehaviour:
   comboPrefab: {fileID: 152304, guid: 60acc809ae9a04d358af26d9365f7d65, type: 2}
   ringPrefab: {fileID: 199300, guid: 1ae7102c163fe4353b4f672d8ccb7f70, type: 2}
   mark: {fileID: 1514511433}
+  beats: {fileID: 4900000, guid: 42e9fac8029424f62911d3138129a42f, type: 3}
 --- !u!1 &1718921997
 GameObject:
   m_ObjectHideFlags: 0
