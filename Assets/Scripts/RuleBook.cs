@@ -22,8 +22,8 @@ public class WellTimedMove : IRule
 
 public class RepetativePenalty : IRule
 {
-	public static int HistoryCount = 10;
-	public static float Divider = 10.0f;
+	public static int HistoryCount = 5;
+	public static float Divider = 1.0f;
 
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
@@ -60,7 +60,7 @@ public class FailSucks : IRule
 	}
 }
 
-public class ComboTooSoon : IRule
+public class Combos : IRule
 {
 	public static float minAffection = 0.6f;
 
@@ -68,7 +68,9 @@ public class ComboTooSoon : IRule
 	{
 		if (KeyActionHelper.isCombo (lastMove)) {
 			if (wooee.affection < minAffection) {
-				return -RuleBook.baseScore;
+				return -2 * RuleBook.baseScore;
+			} else {
+				return 3 * RuleBook.baseScore;
 			}
 		}
 
@@ -122,6 +124,26 @@ public class RedRules : IRule
 	}
 }
 
+public class NightRules : IRule
+{
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (wooee.env == EnvironmentType.Night) {
+			if (lastMove == KeyAction.Reach) {
+				if ((KeyAction)player.danceMoves[-2] == KeyAction.Reach) {
+					return 2*RuleBook.baseScore;
+				}
+			}
+			if (lastMove == KeyAction.Twist) {
+				if ((KeyAction)player.danceMoves[-2] == KeyAction.Twist) {
+					return -2*RuleBook.baseScore;
+				}
+			}
+		}
+		return 0;
+	}
+}
+
 public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
 
@@ -132,9 +154,10 @@ public class RuleBook : MonoBehaviour, IRule {
 			new WellTimedMove(),
 			new RepetativePenalty(),
 			new FailSucks(),
-			new ComboTooSoon(),
+			new Combos(),
 			new GiantsRules(),
-			new DwarfRules()
+			new DwarfRules(),
+			new NightRules()
 		};
 	}
 

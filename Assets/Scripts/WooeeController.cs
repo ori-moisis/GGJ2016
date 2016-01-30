@@ -77,7 +77,12 @@ public class WooeeController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (affection < 0) {
+			affection = 0;
+		} 
+		if (affection > 1) {
+			affection = 1;
+		}
 	}
 
 	// http://stackoverflow.com/a/3132139
