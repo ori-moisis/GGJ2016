@@ -10,6 +10,7 @@ public enum CharacterType { Cat };
 public enum CharacterTrait { A, B ,C };
 public enum CharacterSize { Giant, Normal, Dwarf };
 public enum CharacterColor { Blue, Red, Normal };
+public enum EnvironmentType { Day, Night };
 
 public class WooeeController : MonoBehaviour {
     // [0,1]
@@ -21,6 +22,7 @@ public class WooeeController : MonoBehaviour {
     public CharacterTrait trait;
 	public CharacterSize size;
 	public CharacterColor color;
+	public EnvironmentType env;
 
     //rules
 	public GameObject ruleBookObject;
@@ -28,6 +30,9 @@ public class WooeeController : MonoBehaviour {
 
 	public GameObject wooeeTextObject;
 	Text wooeeText;
+
+	public GameObject backgroundObject;
+	public Sprite[] backgrounds;
 
 
     // Use this for initialization
@@ -62,6 +67,12 @@ public class WooeeController : MonoBehaviour {
 			renderer.transform.transform.position += new Vector3 (-0.25f, 0.5f);
 			break;
 		}
+
+		if (env == EnvironmentType.Day) {
+			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [0];
+		} else {
+			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [1];
+		}
 	}
 	
 	// Update is called once per frame
@@ -81,6 +92,7 @@ public class WooeeController : MonoBehaviour {
 		trait = RandomEnumValue<CharacterTrait> ();
 		size = RandomEnumValue<CharacterSize> ();
 		color = RandomEnumValue<CharacterColor> ();
+		env = RandomEnumValue<EnvironmentType> ();
     }
 
 	public void reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
