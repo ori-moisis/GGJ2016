@@ -100,7 +100,9 @@ public class WooeeController : MonoBehaviour {
 		env = RandomEnumValue<EnvironmentType> ();
     }
 
-	public void reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
-		affection += ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
+	public float reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
+		float delta = ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
+		affection += delta;
+		return delta;
     }
 }

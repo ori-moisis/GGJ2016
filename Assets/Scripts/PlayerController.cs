@@ -7,19 +7,20 @@ public class PlayerController : MonoBehaviour {
 
 	public ArrayList danceMoves;
 	public GameObject wooweeObject;
-	WooeeController woowee;
+	public WooeeController woowee;
     public GameObject messageObject;
-    MessageController messageController;
-    ComboEffect comboEffect;
+	public MessageController messageController;
+    public ComboEffect comboEffect;
 
 	public AudioClip failSound;
 	public AudioClip missSound;
 	public AudioClip hitNoteSound;
 	public AudioClip comboSound;
 
-	public float aproachiingFactor = 10;
-
+	public float approachingFactor = 10;
 	public Vector3 startingPosition;
+
+	private float affectionTrend;
 
 
 	// Use this for initialization
@@ -33,7 +34,7 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		this.transform.position = startingPosition - new Vector3 (woowee.affection-0.5f, 0.0f, 0.0f) * aproachiingFactor;
+		this.transform.position = startingPosition - new Vector3 (woowee.affection-0.5f, 0.0f, 0.0f) * approachingFactor;
     }
 		
 	void animateDanceMove(KeyAction danceMove) {
@@ -45,11 +46,12 @@ public class PlayerController : MonoBehaviour {
 		playSound (danceMove);
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
-		woowee.reactToMove (danceMove, accuracy, this);
+		float affectionDelta = woowee.reactToMove (danceMove, accuracy, this);
         Debug.Log("isCombo:" + KeyActionHelper.isCombo(danceMove));
         if (KeyActionHelper.isCombo(danceMove)) {
             comboEffect.instantiateEffect();
         }
+		showMessage (danceMove, affectionDelta);
 	}
 
 	public void playSound(KeyAction danceMove) {
@@ -72,6 +74,42 @@ public class PlayerController : MonoBehaviour {
 			break;
 		default:
 			audio.PlayOneShot (hitNoteSound);
+			break;
+		}
+	}
+
+	private void showMessage(KeyAction danceMove, float affectionDelta) {
+		if (messageController.isPlaying ()) {
+			return;
+		}
+		if (woowee.affection <= 0.0f) {
+			messageController.showRandomOverlayTextOfType (TextOverlayType.Lose);
+			return;
+		} else if (woowee.affection >= 1.0f) {
+			messageController.showRandomOverlayTextOfType (TextOverlayType.Win);
+			return;
+		}
+		affectionTrend += Mathf.Sign (affectionDelta);
+		switch (danceMove) {
+		case KeyAction.Fail:
+			if (affectionTrend <= -3.0f) {
+				messageController.showRandomOverlayTextOfType (TextOverlayType.Fail);
+				affectionTrend = 0.0f;
+			}
+			break;
+		case KeyAction.Miss:
+			messageController.showRandomOverlayTextOfType (TextOverlayType.Miss);
+			break;
+		case KeyAction.BitchCombo:
+		case KeyAction.DoNotStopCombo:
+		case KeyAction.RiseCombo:
+			messageController.showRandomOverlayTextOfType (TextOverlayType.Combo);
+			break;
+		default:
+			if (affectionTrend >= 3.0f) {
+				messageController.showRandomOverlayTextOfType (TextOverlayType.Hit);
+				affectionTrend = 0.0f;
+			}
 			break;
 		}
 	}
