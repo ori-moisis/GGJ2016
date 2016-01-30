@@ -17,6 +17,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public GameObject ringPrefab;
 	public GameObject mark;
 	public TextAsset beats;
+    public GameObject comboBeatEffect;
 
 	private float unitsPerSecond;
 
@@ -68,7 +69,8 @@ public class BeatsBarScript : MonoBehaviour {
 
 		while (curBeats.Count != 0 && curBeats.Peek ().RelativeTime(t) <= -threshold) {
 			Beat beat = curBeats.Dequeue ();
-			Destroy (beat.gfx);
+            beat.gfx.GetComponent<Animator>().SetTrigger("fade");
+            Destroy(beat.gfx, 1f); 
 
 			// Consider this case as a miss, and send "miss" to Barak the shark
 			moveManager.handleAction(KeyAction.Miss, 0f);
@@ -111,17 +113,18 @@ public class BeatsBarScript : MonoBehaviour {
 		float acc = 0;
 		if (Mathf.Abs (curBeats.Peek ().RelativeTime(aud.time)) <= threshold) {
 			Beat b = curBeats.Dequeue ();
-			// TODO: animate removal
-			acc = (threshold - Mathf.Abs (b.relativeTime)) / threshold;
+            acc = (threshold - Mathf.Abs (b.relativeTime)) / threshold;
 			GameObject ringGfx = Instantiate (ringPrefab) as GameObject;
 			ringGfx.transform.position = b.gfx.transform.position;
 			Animator animator = ringGfx.GetComponent<Animator> ();
 			AnimationClip beatHitClip = animator.runtimeAnimatorController.animationClips [0];
 			animator.Play (beatHitClip.name);
 			Destroy (ringGfx, beatHitClip.length);
-			Destroy (b.gfx, beatHitClip.length);
+            b.gfx.GetComponent<Animator>().SetTrigger("fade");
+            Destroy(b.gfx, beatHitClip.length + 1f); // delay added for fading aniamtion to finish
 		} else {
-			k = KeyAction.Fail;
+            comboUnhighlightNextBear();
+            k = KeyAction.Fail;
 			aud.time = aud.time - 0.1f;
 		}			
 		Debug.Log (k);
@@ -129,27 +132,20 @@ public class BeatsBarScript : MonoBehaviour {
 		moveManager.handleAction (k, acc);
 	}
 
-	public void comboHighlightNextBeat() {
-		nextIsCombo = true;
-		if (nextIsCombo) {
-			Queue<Beat> tempQueue = new Queue<Beat> ();
-			bool firstInQueue = true;
-			while (curBeats.Count > 0) {
-				Beat current = curBeats.Dequeue();
-				if (firstInQueue) {
-					firstInQueue = false;
-					GameObject comboBeat = Instantiate (comboPrefab) as GameObject;
-					tempQueue.Enqueue(new Beat(current.beatTime, comboBeat));
-					Destroy (current.gfx);
-				}
-				else {
-					tempQueue.Enqueue(current);
-				}
-			}
-			curBeats = tempQueue;
-			nextIsCombo = false;
-		}
-	}
+    public void comboHighlightNextBeat() {
+        Beat comboBeat = curBeats.Peek();
+        comboBeat.gfx.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+        GameObject beatEffect = Instantiate(comboBeatEffect, comboBeat.gfx.transform.position, Quaternion.identity) as GameObject;
+        beatEffect.transform.parent = comboBeat.gfx.transform;
+    }
+
+    void comboUnhighlightNextBear() {
+        Beat comboBeat = curBeats.Peek();
+        comboBeat.gfx.GetComponent<SpriteRenderer>().color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+        if (comboBeat.gfx.transform.childCount > 0)  {
+            Destroy(comboBeat.gfx.transform.GetChild(0).gameObject);
+        }
+    }
 }
 
 public class Beat {

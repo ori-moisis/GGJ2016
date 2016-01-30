@@ -2091,6 +2091,7 @@ MonoBehaviour:
   ringPrefab: {fileID: 199300, guid: 1ae7102c163fe4353b4f672d8ccb7f70, type: 2}
   mark: {fileID: 1514511433}
   beats: {fileID: 4900000, guid: 42e9fac8029424f62911d3138129a42f, type: 3}
+  comboBeatEffect: {fileID: 113414, guid: c6b03dd233e50294b86343373e4b6eb8, type: 2}
 --- !u!1 &1688178756
 GameObject:
   m_ObjectHideFlags: 0
