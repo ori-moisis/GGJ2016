@@ -48,6 +48,8 @@ public class WooeeController : MonoBehaviour {
 
 	Animator animator;
 
+	public GameObject endSceneObject;
+
 
     // Use this for initialization
     void Start () {
@@ -81,9 +83,11 @@ public class WooeeController : MonoBehaviour {
 		switch (color) {
 		case CharacterColor.Blue:
 			sprite = sprites [1];
+			endSceneObject.GetComponent<Animator> ().SetInteger ("CatType", 1);
 			break;
 		case CharacterColor.Red:
 			sprite = sprites [2];
+			endSceneObject.GetComponent<Animator> ().SetInteger ("CatType", 2);
 			break;
 		}
 		renderer.sprite = sprite;
