@@ -25,10 +25,9 @@ public class MoveManager : MonoBehaviour {
         player = playerObject.GetComponent<PlayerController>();
         beatsBar = beatsBarObject.GetComponent<BeatsBarScript>();
         combos = new Combo[] {
-			new Combo(KeyAction.A, new KeyAction[] { KeyAction.A }),
-			new Combo(KeyAction.B, new KeyAction[] { KeyAction.B }),
-			new Combo(KeyAction.C, new KeyAction[] { KeyAction.C }),
-			new Combo(KeyAction.D, new KeyAction[] { KeyAction.D })
+			new Combo(KeyAction.BitchCombo, new KeyAction[] { KeyAction.Down, KeyAction.Down, KeyAction.Down, KeyAction.Twist }),
+			new Combo(KeyAction.DoNotStopCombo, new KeyAction[] { KeyAction.Paddle, KeyAction.Paddle, KeyAction.Paddle, KeyAction.Paddle }),
+			new Combo(KeyAction.RiseCombo, new KeyAction[] { KeyAction.Down, KeyAction.Reach, KeyAction.Down, KeyAction.Reach })
         };
     }
 
@@ -53,7 +52,10 @@ public class MoveManager : MonoBehaviour {
 
         foreach (Combo combo in combos) {
             int comboLength = combo.moveSequence.Count;
-            ArrayList relevantMoves = previousMoves.GetRange(previousMoves.Count - (comboLength), comboLength - 1);
+			if (previousMoves.Count < comboLength) {
+				continue;
+			}
+            ArrayList relevantMoves = previousMoves.GetRange(previousMoves.Count - comboLength, comboLength - 1);
             relevantMoves.Add(move);
             if (relevantMoves.Cast<object>().SequenceEqual(combo.moveSequence.Cast<object>())) {
                 return combo.comboMove;
@@ -71,6 +73,9 @@ public class MoveManager : MonoBehaviour {
 
         foreach (Combo combo in combos) {
             int comboLength = combo.moveSequence.Count;
+			if (previousMoves.Count < (comboLength - 1)) {
+				continue;
+			}
             ArrayList relevantPreviousMoves = previousMoves.GetRange(previousMoves.Count - (comboLength - 1), comboLength - 1);
             if (relevantPreviousMoves.Cast<object>().SequenceEqual(combo.moveSequence.GetRange(0, comboLength - 1).Cast<object>())) {
                 return true;

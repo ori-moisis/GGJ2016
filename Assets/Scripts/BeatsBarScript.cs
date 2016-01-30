@@ -139,4 +139,15 @@ public class Beat {
 	}
 }
 
-public enum KeyAction {A, B, C, D, Miss, Fail}
+public enum KeyAction {Paddle, Reach, Twist, Down, Miss, Fail, 
+					   BitchCombo, RiseCombo, DoNotStopCombo}
+
+public class KeyActionHelper {
+	public static bool isCombo(KeyAction action) {
+		return action == KeyAction.BitchCombo || action == KeyAction.RiseCombo || action == KeyAction.DoNotStopCombo;
+	}
+
+	public static bool isFail(KeyAction action) {
+		return action == KeyAction.Fail || action == KeyAction.Miss;
+	}
+}

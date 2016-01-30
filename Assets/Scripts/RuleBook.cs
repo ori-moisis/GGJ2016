@@ -8,28 +8,115 @@ public interface IRule
 	float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player);
 }
 
-public class BaseRule : IRule
+public class WellTimedMove : IRule
 {
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
     {
-		if (lastMove == KeyAction.Fail || lastMove == KeyAction.Miss) {
+		if (KeyActionHelper.isFail(lastMove)) {
 			return 0;
 		}
 
-		if (player.danceMoves.Count < 2 || lastMove != (KeyAction)player.danceMoves [player.danceMoves.Count - 2]) {
-			return RuleBook.baseScore * accuracy;
-		} else {
-			return -RuleBook.baseScore * accuracy;
-		}
+		return RuleBook.baseScore * accuracy;
     }
+}
+
+public class RepetativePenalty : IRule
+{
+	public static int HistoryCount = 10;
+	public static float Divider = 10.0f;
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (KeyActionHelper.isFail(lastMove)) {
+			return 0;
+		}
+
+		if (player.danceMoves.Count > 2) {
+			int i = Math.Max (0, player.danceMoves.Count - HistoryCount);
+			int count = 0;
+			for (; i < player.danceMoves.Count - 1; ++i) {
+				if (lastMove == (KeyAction)player.danceMoves [i]) {
+					++count;
+				}
+			}
+			return (-count * RuleBook.baseScore) / Divider;
+		}
+
+		return RuleBook.baseScore * accuracy;
+	}
 }
 
 public class FailSucks : IRule
 {
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
-		if (lastMove == KeyAction.Fail || lastMove == KeyAction.Miss) {
+		if (lastMove == KeyAction.Miss) {
+			return -RuleBook.baseScore / 2.0f;
+		}
+		if (lastMove == KeyAction.Fail) {
 			return -RuleBook.baseScore;
+		}
+		return 0;
+	}
+}
+
+public class ComboTooSoon : IRule
+{
+	public static float minAffection = 0.6f;
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (KeyActionHelper.isCombo (lastMove)) {
+			if (wooee.affection < minAffection) {
+				return -RuleBook.baseScore;
+			}
+		}
+
+		return 0;
+	}
+}
+
+public class GiantsRules : IRule
+{
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (wooee.size == CharacterSize.Giant) {
+			if (lastMove == KeyAction.Twist) {
+				return -RuleBook.baseScore;
+			}
+			if (lastMove == KeyAction.Reach) {
+				return RuleBook.baseScore;
+			}
+		}
+		return 0;
+	}
+}
+
+
+public class DwarfRules : IRule
+{
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (wooee.size == CharacterSize.Dwarf) {
+			if (lastMove == KeyAction.Reach) {
+				return -RuleBook.baseScore;
+			}
+			if (lastMove == KeyAction.Down) {
+				return RuleBook.baseScore;
+			}
+		}
+		return 0;
+	}
+}
+
+public class RedRules : IRule
+{
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
+	{
+		if (wooee.color == CharacterColor.Red) {
+			if (lastMove == KeyAction.Paddle) {
+				return -RuleBook.baseScore;
+			}
 		}
 		return 0;
 	}
@@ -42,8 +129,12 @@ public class RuleBook : MonoBehaviour, IRule {
 
 	public RuleBook() {
 		rules = new IRule[] {
-			new BaseRule(),
-			new FailSucks()
+			new WellTimedMove(),
+			new RepetativePenalty(),
+			new FailSucks(),
+			new ComboTooSoon(),
+			new GiantsRules(),
+			new DwarfRules()
 		};
 	}
 
