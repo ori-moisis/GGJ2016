@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using System.Linq;
 
 public interface IRule
 {
@@ -22,8 +23,11 @@ public class WellTimedMove : IRule
 
 public class RepetativePenalty : IRule
 {
-	public static int HistoryCount = 5;
-	public static float Divider = 1.0f;
+	public static int HistoryCount = 10;
+	public static int MaxAllowed = 2;
+	public static float Multiplier = 2.0f;
+
+
 
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
@@ -31,18 +35,32 @@ public class RepetativePenalty : IRule
 			return 0;
 		}
 
-		if (player.danceMoves.Count > 2) {
-			int i = Math.Max (0, player.danceMoves.Count - HistoryCount);
-			int count = 0;
-			for (; i < player.danceMoves.Count - 1; ++i) {
-				if (lastMove == (KeyAction)player.danceMoves [i]) {
-					++count;
-				}
+		for(int i=4; i>=1; i--) {
+			if (player.danceMoves.Count < i * 2) {
+				continue;
 			}
-			return (-count * RuleBook.baseScore) / Divider;
+			ArrayList prevSequence = player.danceMoves.GetRange(player.danceMoves.Count - 2*i, i);
+			ArrayList currentSequence = player.danceMoves.GetRange(player.danceMoves.Count - i, i);
+			if (prevSequence.Cast<object>().SequenceEqual(currentSequence.Cast<object>())) {
+				Debug.Log(i);
+				Debug.Log("Rep");
+				return - i * RuleBook.baseScore;
+			}
 		}
 
-		return RuleBook.baseScore * accuracy;
+//		if (player.danceMoves.Count > 2) {
+//			int i = Math.Max (0, player.danceMoves.Count - HistoryCount);
+//			int count = 0;
+//			for (; i < player.danceMoves.Count - 1; ++i) {
+//				if (lastMove == (KeyAction)player.danceMoves [i]) {
+//					++count;
+//				}
+//			}
+//			return - Mathf.Abs(count - MaxAllowed) * RuleBook.baseScore * Multiplier;
+//		}
+//
+//		return RuleBook.baseScore * accuracy;
+		return 0;
 	}
 }
 
@@ -54,7 +72,7 @@ public class FailSucks : IRule
 			return -RuleBook.baseScore / 2.0f;
 		}
 		if (lastMove == KeyAction.Fail) {
-			return -RuleBook.baseScore;
+			return -RuleBook.baseScore * 2;
 		}
 		return 0;
 	}
@@ -82,14 +100,27 @@ public class GiantsRules : IRule
 {
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
-		if (wooee.size == CharacterSize.Giant) {
-			if (lastMove == KeyAction.Twist) {
-				return -RuleBook.baseScore;
-			}
-			if (lastMove == KeyAction.Reach) {
-				return RuleBook.baseScore;
-			}
+		ArrayList good = new ArrayList ();
+		good.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Reach);
+
+		ArrayList good2 = new ArrayList ();
+		good2.Add (KeyAction.Paddle);
+		good2.Add (KeyAction.Twist);
+
+		if ( RuleBook.sequenceJustOccured(good, player)) {
+			return 3*RuleBook.baseScore;
 		}
+
+		if ( RuleBook.sequenceJustOccured(good2, player)) {
+			return 3*RuleBook.baseScore;
+		}
+
+
+		if (player.danceMoves.Count <= 1) {
+			return RuleBook.baseScore * accuracy;			
+		}
+
 		return 0;
 	}
 }
@@ -128,6 +159,7 @@ public class NightRules : IRule
 {
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
+
 		if (wooee.env == EnvironmentType.Night) {
 			if (lastMove == KeyAction.Reach) {
 				if ((KeyAction)player.danceMoves[-2] == KeyAction.Reach) {
@@ -147,7 +179,7 @@ public class NightRules : IRule
 public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
 
-	public static float baseScore = 0.05f;
+	public static float baseScore = 0.02f;
 
 	public RuleBook() {
 		rules = new IRule[] {
@@ -155,9 +187,7 @@ public class RuleBook : MonoBehaviour, IRule {
 			new RepetativePenalty(),
 			new FailSucks(),
 			new Combos(),
-			new GiantsRules(),
-			new DwarfRules(),
-			new NightRules()
+			new GiantsRules()
 		};
 	}
 
@@ -170,5 +200,18 @@ public class RuleBook : MonoBehaviour, IRule {
         }
         return sum;
     }
+
+	public static bool sequenceJustOccured(ArrayList sequence, PlayerController player) {
+
+		if (sequence.Count > player.danceMoves.Count) {
+			return false;
+		}
+
+		ArrayList relevantMoves = player.danceMoves.GetRange(player.danceMoves.Count - sequence.Count, sequence.Count);
+		if (relevantMoves.Cast<object>().SequenceEqual(sequence.Cast<object>())) {
+			return true;
+		}
+		return false;
+	}
 }
 

@@ -16,6 +16,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public GameObject comboPrefab;
 	public GameObject ringPrefab;
 	public GameObject mark;
+	public TextAsset beats;
 
 	private float unitsPerSecond;
 
@@ -37,7 +38,7 @@ public class BeatsBarScript : MonoBehaviour {
 		aud = GetComponent<AudioSource> ();
 		aud.Play ();
 
-		beatVals = getBeatVals ("Assets/Audio/beats.txt");
+		beatVals = getBeatVals ();
 		curBeats = new Queue<Beat> ();
 
 		// Move manager
@@ -81,7 +82,7 @@ public class BeatsBarScript : MonoBehaviour {
 			beat.Show ();
 		}
 		if (nextIsCombo) {
-			Beat combo = curBeats.Peek();
+			//Beat combo = curBeats.Peek();
 		}
 	}
 
@@ -89,12 +90,11 @@ public class BeatsBarScript : MonoBehaviour {
 		return mark.transform.position.x + relativeTime * unitsPerSecond;
 	}
 
-	Queue<float> getBeatVals(string filename) {
+	Queue<float> getBeatVals() {
 		int skipped = 0;
 		string line;
 		Queue<float> q = new Queue<float>();
-		// Read the file and display it line by line.
-		System.IO.StreamReader file = new System.IO.StreamReader(filename);
+		System.IO.StringReader file = new System.IO.StringReader (beats.text);
 		while((line = file.ReadLine()) != null)
 		{
 			skipped++;
