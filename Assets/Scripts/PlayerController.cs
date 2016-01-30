@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour {
 	WooeeController woowee;
     public GameObject messageObject;
     MessageController messageController;
+    ComboEffect comboEffect;
 
 	public AudioClip failSound;
 	public AudioClip missSound;
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour {
 		danceMoves = new ArrayList ();
 		woowee = wooweeObject.GetComponent<WooeeController> ();
         messageController = messageObject.GetComponent<MessageController> ();
+        comboEffect = GetComponentInChildren<ComboEffect>();
     }
 	
 	// Update is called once per frame
@@ -38,6 +40,10 @@ public class PlayerController : MonoBehaviour {
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);
+        Debug.Log("isCombo:" + KeyActionHelper.isCombo(danceMove));
+        if (KeyActionHelper.isCombo(danceMove)) {
+            comboEffect.instantiateEffect();
+        }
 	}
 
 	public void playSound(KeyAction danceMove) {
