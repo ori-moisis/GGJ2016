@@ -17,6 +17,7 @@ public class BeatsBarScript : MonoBehaviour {
 	public GameObject mark;
 	public TextAsset beats;
     public GameObject comboBeatEffect;
+    public float doubleSpeedAffectionThreshold = 0.75f;
 
 	private float unitsPerSecond;
 
@@ -128,7 +129,7 @@ public class BeatsBarScript : MonoBehaviour {
 		moveManager.handleAction (k, acc);
 
         // accelerate song
-        if (moveManager.playerObject.GetComponent<PlayerController>().woowee.affection > 0.75f && beatSkip == 2) {
+        if (moveManager.playerObject.GetComponent<PlayerController>().woowee.affection > doubleSpeedAffectionThreshold && beatSkip == 2) {
             beatSkip = 1;
             beatVals = filterPassedBeats(getBeatVals());
 
