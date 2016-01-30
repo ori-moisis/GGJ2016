@@ -3,6 +3,7 @@ using System.Collections;
 
 // Characteristics types
 using System;
+using UnityEngine.UI;
 
 
 public enum CharacterType { Cat };
@@ -25,13 +26,21 @@ public class WooeeController : MonoBehaviour {
 	public GameObject ruleBookObject;
     RuleBook ruleBook;
 
+	public GameObject wooeeTextObject;
+	Text wooeeText;
+
 
     // Use this for initialization
     void Start () {
 		ruleBook = ruleBookObject.GetComponent<RuleBook> ();
+		wooeeText = wooeeTextObject.GetComponent<Text> ();
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
+		wooeeText.text = type.ToString() + "\n" 
+			+ trait.ToString() + "\n" 
+			+ size.ToString() + "\n" 
+			+ color.ToString();
 	}
 	
 	// Update is called once per frame
