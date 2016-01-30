@@ -1394,7 +1394,7 @@ Prefab:
     - target: {fileID: 11419472, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: missSound
       value: 
-      objectReference: {fileID: 8300000, guid: 56cf107b1544445169d1a56ce0033ebc, type: 3}
+      objectReference: {fileID: 8300000, guid: 98c45741ca6214d7ea5cff555487682c, type: 3}
     - target: {fileID: 11419472, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: failSound
       value: 
@@ -1402,11 +1402,11 @@ Prefab:
     - target: {fileID: 11419472, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: hitNoteSound
       value: 
-      objectReference: {fileID: 8300000, guid: f2c35c914ed804302b1875cde6bef096, type: 3}
+      objectReference: {fileID: 8300000, guid: d0925c0d721d64047884e70f68a9e1ef, type: 3}
     - target: {fileID: 11419472, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
       propertyPath: comboSound
       value: 
-      objectReference: {fileID: 8300000, guid: b94e19ef9911b4f0588519f45f0b2be8, type: 3}
+      objectReference: {fileID: 8300000, guid: b2dbb2378e9dbc24abc76cc2b355ea6d, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4975ab9dc5790f745956b482fc2f5d59, type: 2}
   m_IsPrefabParent: 0
@@ -1683,7 +1683,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 5a536072fe94847cdb7ecb12fde1e4c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1945,9 +1945,9 @@ MonoBehaviour:
   messageController: {fileID: 0}
   comboEffect: {fileID: 0}
   failSound: {fileID: 8300000, guid: 396afdf92c2cb4c389c8dd77d34cdd2a, type: 3}
-  missSound: {fileID: 8300000, guid: 56cf107b1544445169d1a56ce0033ebc, type: 3}
-  hitNoteSound: {fileID: 8300000, guid: f2c35c914ed804302b1875cde6bef096, type: 3}
-  comboSound: {fileID: 8300000, guid: b94e19ef9911b4f0588519f45f0b2be8, type: 3}
+  missSound: {fileID: 8300000, guid: 98c45741ca6214d7ea5cff555487682c, type: 3}
+  hitNoteSound: {fileID: 8300000, guid: d0925c0d721d64047884e70f68a9e1ef, type: 3}
+  comboSound: {fileID: 8300000, guid: b2dbb2378e9dbc24abc76cc2b355ea6d, type: 3}
   approachingFactor: 10
   startingPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &1565929559

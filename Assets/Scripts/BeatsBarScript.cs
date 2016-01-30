@@ -13,7 +13,6 @@ public class BeatsBarScript : MonoBehaviour {
 	public float threshold = 0.5f;
 	public GameObject barArea;
 	public GameObject beatPrefab;
-	public GameObject comboPrefab;
 	public GameObject ringPrefab;
 	public GameObject mark;
 	public TextAsset beats;
@@ -83,9 +82,6 @@ public class BeatsBarScript : MonoBehaviour {
 			beat.gfx.transform.position = new Vector3 (secondsToPosition (beat.relativeTime), mark.transform.position.y);
 			beat.Show ();
 		}
-		if (nextIsCombo) {
-			//Beat combo = curBeats.Peek();
-		}
 	}
 
 	float secondsToPosition(float relativeTime) {
@@ -130,7 +126,28 @@ public class BeatsBarScript : MonoBehaviour {
 		Debug.Log (k);
 		Debug.Log (acc);
 		moveManager.handleAction (k, acc);
+
+        // accelerate song
+        if (moveManager.playerObject.GetComponent<PlayerController>().woowee.affection > 0.75f && beatSkip == 2) {
+            beatSkip = 1;
+            beatVals = filterPassedBeats(getBeatVals());
+
+            //updateBeatGfx();
+        }
 	}
+
+    Queue<float> filterPassedBeats(Queue<float> queue)
+    {
+        Queue<float> returnQueue = new Queue<float>();
+
+        foreach(float beat in queue)
+        {
+            if (beat > aud.time + 3) {
+                returnQueue.Enqueue(beat);
+            }
+        }
+        return returnQueue;
+    }
 
     public void comboHighlightNextBeat() {
         Beat comboBeat = curBeats.Peek();

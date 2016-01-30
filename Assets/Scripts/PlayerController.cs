@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour {
 			audio.PlayOneShot (failSound);
 			break;
 		case KeyAction.Miss:
-			audio.PlayOneShot (missSound);
+			//audio.PlayOneShot (missSound);
 			break;
 		case KeyAction.BitchCombo:
 			audio.PlayOneShot (comboSound);
