@@ -16,6 +16,12 @@ public class WooeeController : MonoBehaviour {
     // [0,1]
     public float affection;
 
+	public float affectionDiffThresh;
+	public int affectionDiffMoves;
+
+	float[] affectionHist;
+	int affectionHistIndex = 0;
+
     // characteristics
     public bool randomizeCharacteristics;
     public CharacterType type;
@@ -33,6 +39,8 @@ public class WooeeController : MonoBehaviour {
 
 	public GameObject backgroundObject;
 	public Sprite[] backgrounds;
+
+	Animator animator;
 
 
     // Use this for initialization
@@ -73,6 +81,15 @@ public class WooeeController : MonoBehaviour {
 		} else {
 			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [1];
 		}
+
+		animator = GetComponent<Animator> ();
+		affectionHist = new float[affectionDiffMoves];
+	}
+
+	void resetAffectionHist() {
+		for (int i = 0; i < affectionHist.Length; ++i) {
+			affectionHist [i] = affection;
+		}
 	}
 	
 	// Update is called once per frame
@@ -103,6 +120,25 @@ public class WooeeController : MonoBehaviour {
 	public float reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
 		float delta = ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
 		affection += delta;
+
+		affectionHist [affectionHistIndex] = affection;
+		affectionHistIndex = (affectionHistIndex + 1) % affectionHist.Length;
+		float diff = 0;
+		float lastAffect = affectionHist[affectionHistIndex];
+		for (int i = 0; i < affectionHist.Length; ++i) {
+			float currAffect = affectionHist [(affectionHistIndex + i) % affectionHist.Length];
+			diff += (currAffect - lastAffect);
+			lastAffect = currAffect;
+			if (Math.Abs (diff) > this.affectionDiffThresh) {
+				if (diff > this.affectionDiffThresh) {
+					this.animator.SetTrigger ("Blush");
+				} else {
+				}
+				this.resetAffectionHist ();
+			}
+		}
+
 		return delta;
+		
     }
 }
