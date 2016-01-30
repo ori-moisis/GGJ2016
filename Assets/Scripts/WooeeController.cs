@@ -38,9 +38,6 @@ public class WooeeController : MonoBehaviour {
 	public GameObject ruleBookObject;
     RuleBook ruleBook;
 
-	public GameObject wooeeTextObject;
-	Text wooeeText;
-
 	public GameObject backgroundObject;
 	public Sprite[] backgrounds;
 
@@ -55,7 +52,6 @@ public class WooeeController : MonoBehaviour {
     // Use this for initialization
     void Start () {
 		ruleBook = ruleBookObject.GetComponent<RuleBook> ();
-		wooeeText = wooeeTextObject.GetComponent<Text> ();
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
@@ -69,12 +65,6 @@ public class WooeeController : MonoBehaviour {
 		if (trait != CharacterTrait.Bowtie) {
 			bowtie.SetActive (false);
 		}
-
-
-		wooeeText.text = type.ToString() + "\n" 
-			+ trait.ToString() + "\n" 
-			+ size.ToString() + "\n" 
-			+ color.ToString();
 
 		SpriteRenderer renderer = GetComponentInParent<SpriteRenderer> ();
 		switch (size) {

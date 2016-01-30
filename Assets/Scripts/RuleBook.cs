@@ -64,7 +64,7 @@ public class RepetativePenalty : IRule
 			ArrayList prevSequence = player.danceMoves.GetRange(player.danceMoves.Count - 2*i, i);
 			ArrayList currentSequence = player.danceMoves.GetRange(player.danceMoves.Count - i, i);
 			if (prevSequence.Cast<object>().SequenceEqual(currentSequence.Cast<object>())) {
-				return - i * RuleBook.baseScore;
+				return - i * RuleBook.baseScore * 4;
 			}
 		}
 		return 0;
@@ -76,10 +76,10 @@ public class FailSucks : IRule
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
 		if (lastMove == KeyAction.Miss) {
-			return -RuleBook.baseScore / 2.0f;
+			return -RuleBook.baseScore;
 		}
 		if (lastMove == KeyAction.Fail) {
-			return -RuleBook.baseScore * 2;
+			return -RuleBook.baseScore * 4;
 		}
 		return 0;
 	}
@@ -278,7 +278,7 @@ public class StacheRules : BaseRule
 public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
 
-	public static float baseScore = 0.01f;
+	public static float baseScore = 0.005f;
 
 	public RuleBook() {
 		rules = new IRule[] {
