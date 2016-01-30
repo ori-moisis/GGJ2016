@@ -11,6 +11,10 @@ public class PlayerController : MonoBehaviour {
     public GameObject messageObject;
     MessageController messageController;
 
+	public AudioClip failSound;
+	public AudioClip missSound;
+
+
 	// Use this for initialization
 	void Start () {
 		danceMoves = new ArrayList ();
@@ -28,9 +32,28 @@ public class PlayerController : MonoBehaviour {
 
 	public void doDanceMove(KeyAction danceMove, float accuracy) {
         Debug.Log("Player got dance move:" + danceMove + " accuracy:" + accuracy);
+		playSound (danceMove);
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);
+<<<<<<< Updated upstream
        // messageController.showRandomOverlayTextOfType(TextOverlayType.Hit);
     }
+=======
+	}
+
+	public void playSound(KeyAction danceMove) {
+		AudioSource audio = GetComponent<AudioSource> ();
+		switch (danceMove) {
+		case KeyAction.Fail:
+			audio.PlayOneShot (failSound);
+			break;
+		case KeyAction.Miss:
+			audio.PlayOneShot (missSound);
+			break;
+		default:
+			break;
+		}
+	}
+>>>>>>> Stashed changes
 }
