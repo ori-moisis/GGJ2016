@@ -57,14 +57,12 @@ public class BeatsBarScript : MonoBehaviour {
 		float t = aud.time;
 		while (beatVals.Count != 0 && beatVals.Peek () <= t + barLengthSeconds) {
 			float beatTime = beatVals.Dequeue ();
+
 			GameObject beatGfx;
-			if (nextIsCombo) {
-				nextIsCombo = false;
-				beatGfx = Instantiate (comboPrefab) as GameObject;
-			} else {
-				beatGfx = Instantiate (beatPrefab) as GameObject;
-			}
-			curBeats.Enqueue (new Beat(beatTime, beatGfx));
+			 
+			beatGfx = Instantiate (beatPrefab) as GameObject;
+			curBeats.Enqueue (new Beat(beatTime, beatGfx));	
+
 		}
 
 		while (curBeats.Count != 0 && curBeats.Peek ().RelativeTime(t) <= -threshold) {
@@ -81,6 +79,9 @@ public class BeatsBarScript : MonoBehaviour {
 			beat.RelativeTime (aud.time);
 			beat.gfx.transform.position = new Vector3 (secondsToPosition (beat.relativeTime), mark.transform.position.y);
 			beat.Show ();
+		}
+		if (nextIsCombo) {
+			Beat combo = curBeats.Peek();
 		}
 	}
 
@@ -130,6 +131,24 @@ public class BeatsBarScript : MonoBehaviour {
 
 	public void comboHighlightNextBeat() {
 		nextIsCombo = true;
+		if (nextIsCombo) {
+			Queue<Beat> tempQueue = new Queue<Beat> ();
+			bool firstInQueue = true;
+			while (curBeats.Count > 0) {
+				Beat current = curBeats.Dequeue();
+				if (firstInQueue) {
+					firstInQueue = false;
+					GameObject comboBeat = Instantiate (comboPrefab) as GameObject;
+					tempQueue.Enqueue(new Beat(current.beatTime, comboBeat));
+					Destroy (current.gfx);
+				}
+				else {
+					tempQueue.Enqueue(current);
+				}
+			}
+			curBeats = tempQueue;
+			nextIsCombo = false;
+		}
 	}
 }
 
