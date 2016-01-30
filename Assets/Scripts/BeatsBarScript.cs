@@ -106,7 +106,7 @@ public class BeatsBarScript : MonoBehaviour {
 			Destroy (b.obj);
 		} else {
 			k = KeyAction.Fail;
-			aud.time = aud.time - 0.2f;
+			aud.time = aud.time - 0.1f;
 		}			
 		Debug.Log (k);
 		Debug.Log (acc);

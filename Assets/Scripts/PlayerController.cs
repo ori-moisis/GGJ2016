@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour {
 
 	public AudioClip failSound;
 	public AudioClip missSound;
+	public AudioClip hitNoteSound;
 
 
 	// Use this for initialization
@@ -36,10 +37,6 @@ public class PlayerController : MonoBehaviour {
 		animateDanceMove (danceMove);
 		danceMoves.Add (danceMove);
 		woowee.reactToMove (danceMove, accuracy, this);
-<<<<<<< Updated upstream
-       // messageController.showRandomOverlayTextOfType(TextOverlayType.Hit);
-    }
-=======
 	}
 
 	public void playSound(KeyAction danceMove) {
@@ -52,8 +49,8 @@ public class PlayerController : MonoBehaviour {
 			audio.PlayOneShot (missSound);
 			break;
 		default:
+			audio.PlayOneShot (hitNoteSound);
 			break;
 		}
 	}
->>>>>>> Stashed changes
 }
