@@ -44,12 +44,22 @@ public class WooeeController : MonoBehaviour {
 			+ color.ToString();
 
 		SpriteRenderer renderer = GetComponentInParent<SpriteRenderer> ();
-		switch (this.color) {
+		switch (color) {
 		case CharacterColor.Blue:
 			renderer.color = Color.HSVToRGB (160 / 255.0f, 200 / 255.0f, 255 / 255.0f);
 			break;
 		case CharacterColor.Red:
 			renderer.color = Color.HSVToRGB (0 / 255.0f, 200 / 255.0f, 255 / 255.0f);
+			break;
+		}
+		switch (size) {
+		case CharacterSize.Dwarf:
+			renderer.transform.localScale -= new Vector3 (0.5f, 0.5f, 0.0f);
+			renderer.transform.transform.position += new Vector3 (0.25f, -0.5f);
+			break;
+		case CharacterSize.Giant:
+			renderer.transform.localScale += new Vector3 (0.5f, 0.5f, 0.0f);
+			renderer.transform.transform.position += new Vector3 (-0.25f, 0.5f);
 			break;
 		}
 	}
