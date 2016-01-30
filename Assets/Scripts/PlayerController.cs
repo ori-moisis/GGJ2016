@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour {
     }
 		
 	void animateDanceMove(KeyAction danceMove) {
-		
+		GetComponent<Animator> ().SetTrigger (danceMove.ToString ());
 	}
 
 	public void doDanceMove(KeyAction danceMove, float accuracy) {
