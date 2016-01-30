@@ -2606,6 +2606,7 @@ GameObject:
   - 114: {fileID: 2019346565}
   - 95: {fileID: 2019346564}
   - 114: {fileID: 2019346567}
+  - 82: {fileID: 2019346568}
   m_Layer: 5
   m_Name: Message
   m_TagString: Untagged
@@ -2694,17 +2695,105 @@ MonoBehaviour:
   hitSprites:
   - {fileID: 21300000, guid: 4037d0f31eb024a06afca6962e2522f4, type: 3}
   - {fileID: 21300000, guid: 7a730d609a6124a06bc3c5b15232af0c, type: 3}
+  hitSounds:
+  - {fileID: 8300000, guid: d8fff7b3289a74da28f67af8007f761c, type: 3}
+  - {fileID: 8300000, guid: ef34166f461184219b3de8f2e289c764, type: 3}
   missSprites: []
+  missSounds: []
   failSprites:
   - {fileID: 21300000, guid: f6f5ca33564654c5bb7de0c0f03f2994, type: 3}
   - {fileID: 21300000, guid: 570ce01eaef1d437c9b4408105feb0c2, type: 3}
   - {fileID: 21300000, guid: be3cd4faa55894f518402fe638d06641, type: 3}
+  failSounds:
+  - {fileID: 8300000, guid: b015b7b2c1454490ba58397b830b955c, type: 3}
+  - {fileID: 8300000, guid: de6c517b0041b4f9aa93890827cc635d, type: 3}
+  - {fileID: 8300000, guid: e5baba27602c8468dbe7c3a27161cfc5, type: 3}
   comboSprites:
   - {fileID: 21300000, guid: 4805d0414cbb14da0bcca96626dd8a44, type: 3}
+  comboSounds:
+  - {fileID: 8300000, guid: 63a399bdcecbf4bdc9175847846583af, type: 3}
   loseSprites: []
+  loseSounds: []
   winSprites:
   - {fileID: 21300000, guid: 25c9fde6793894722b2c39d79284b170, type: 3}
+  winSounds:
+  - {fileID: 8300000, guid: d9b0879457eb044ac8b63e643c973d85, type: 3}
   image: {fileID: 2019346565}
+  audioSrc: {fileID: 2019346568}
+--- !u!82 &2019346568
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019346562}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!1 &2052822436
 GameObject:
   m_ObjectHideFlags: 0
