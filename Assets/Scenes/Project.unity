@@ -298,7 +298,6 @@ RectTransform:
   - {fileID: 1513829026}
   - {fileID: 944119541}
   - {fileID: 1515341347}
-  - {fileID: 2102332536}
   m_Father: {fileID: 643998391}
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
@@ -2826,6 +2825,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d9b0879457eb044ac8b63e643c973d85, type: 3}
   image: {fileID: 2019346565}
   audioSrc: {fileID: 2019346568}
+  endSceneAnim: {fileID: 0}
 --- !u!82 &2019346568
 AudioSource:
   m_ObjectHideFlags: 0

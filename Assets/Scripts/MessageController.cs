@@ -20,6 +20,9 @@ public class MessageController : MonoBehaviour {
 	public Image image;
 	public AudioSource audioSrc;
 
+	public Animator endSceneAnim;
+
+	bool done = false;
 
 	private Animator animator;
 
@@ -60,6 +63,7 @@ public class MessageController : MonoBehaviour {
 			image.sprite = null;
 			image.overrideSprite = null;
 			animator.SetTrigger ("nopeMessage");
+			done = true;
 			sounds = loseSounds;
 			break;
         }
@@ -85,6 +89,7 @@ public class MessageController : MonoBehaviour {
     }
 
 	public bool isPlaying() {
+		return done;
 		AnimatorStateInfo clip = this.animator.GetCurrentAnimatorStateInfo (0);
 		return clip.IsName ("NopeMessage");
 	}
