@@ -37,15 +37,26 @@ public class WooeeController : MonoBehaviour {
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
+
 		wooeeText.text = type.ToString() + "\n" 
 			+ trait.ToString() + "\n" 
 			+ size.ToString() + "\n" 
 			+ color.ToString();
+
+		SpriteRenderer renderer = GetComponentInParent<SpriteRenderer> ();
+		switch (this.color) {
+		case CharacterColor.Blue:
+			renderer.color = Color.HSVToRGB (160 / 255.0f, 200 / 255.0f, 255 / 255.0f);
+			break;
+		case CharacterColor.Red:
+			renderer.color = Color.HSVToRGB (0 / 255.0f, 200 / 255.0f, 255 / 255.0f);
+			break;
+		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	// http://stackoverflow.com/a/3132139
