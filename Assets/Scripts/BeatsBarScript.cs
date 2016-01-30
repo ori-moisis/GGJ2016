@@ -17,6 +17,8 @@ public class BeatsBarScript : MonoBehaviour {
 	public Queue<float> beatVals;
 	public Queue<Beat> curBeats;
 
+
+
 	private Vector3 barLeft;
 
 
@@ -25,6 +27,7 @@ public class BeatsBarScript : MonoBehaviour {
 		// Audio	
 		aud = GetComponent<AudioSource> ();
 		aud.Play ();
+
 		beatVals = getBeatVals ("Assets/Audio/beats.txt");
 		curBeats = new Queue<Beat> ();
 
@@ -103,6 +106,7 @@ public class BeatsBarScript : MonoBehaviour {
 			Destroy (b.obj);
 		} else {
 			k = KeyAction.Fail;
+			aud.time = aud.time - 0.2f;
 		}			
 		Debug.Log (k);
 		Debug.Log (acc);
