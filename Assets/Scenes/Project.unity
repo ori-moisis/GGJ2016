@@ -2886,13 +2886,14 @@ MonoBehaviour:
   failSounds:
   - {fileID: 8300000, guid: b015b7b2c1454490ba58397b830b955c, type: 3}
   - {fileID: 8300000, guid: de6c517b0041b4f9aa93890827cc635d, type: 3}
-  - {fileID: 8300000, guid: e5baba27602c8468dbe7c3a27161cfc5, type: 3}
+  - {fileID: 8300000, guid: 9729a84138447204aa33f3162d8649a8, type: 3}
   comboSprites:
   - {fileID: 21300000, guid: 4805d0414cbb14da0bcca96626dd8a44, type: 3}
   comboSounds:
-  - {fileID: 8300000, guid: 63a399bdcecbf4bdc9175847846583af, type: 3}
+  - {fileID: 8300000, guid: 27eff219098c47b46b0672dd76f32d39, type: 3}
   loseSprites: []
-  loseSounds: []
+  loseSounds:
+  - {fileID: 8300000, guid: e5baba27602c8468dbe7c3a27161cfc5, type: 3}
   winSprites:
   - {fileID: 21300000, guid: 25c9fde6793894722b2c39d79284b170, type: 3}
   winSounds:
