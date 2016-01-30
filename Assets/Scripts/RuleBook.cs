@@ -110,7 +110,8 @@ public class GiantsRules : BaseRule
 		badFactor = 1.0f;
 		good.Add (KeyAction.Paddle);
 		good.Add (KeyAction.Reach);
-		bad.Add (KeyAction.Paddle);
+		bad.Add (KeyAction.Twist);
+		bad.Add (KeyAction.Down);
 	}
 
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
@@ -127,9 +128,10 @@ public class DwarfRules : BaseRule
 	public DwarfRules() {
 		goodFactor = 3.0f;
 		badFactor = 1.0f;
-		good.Add (KeyAction.Twist);
+		good.Add (KeyAction.Reach);
 		good.Add (KeyAction.Twist);
 		bad.Add (KeyAction.Down);
+		bad.Add (KeyAction.Paddle);
 	}
 
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
@@ -142,15 +144,16 @@ public class DwarfRules : BaseRule
 
 public class RedRules : BaseRule
 {
-
 	public RedRules() {
-		goodFactor = 0.0f;
+		goodFactor = 3.0f;
 		badFactor = 1.0f;
-		bad.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Twist);
+		bad.Add (KeyAction.Reach);
+		bad.Add (KeyAction.Down);
 	}
 
-	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
-	{
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
 		if (wooee.color == CharacterColor.Red) {
 			return getDelta (player);
 		}
@@ -158,22 +161,115 @@ public class RedRules : BaseRule
 	}
 }
 
-public class NightRules : IRule
+public class BlueRules : BaseRule
 {
-	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
-	{
+	public BlueRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Twist);
+		good.Add (KeyAction.Paddle);
+		bad.Add (KeyAction.Down);
+		bad.Add (KeyAction.Reach);
+	}
 
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.color == CharacterColor.Blue) {
+			return getDelta (player);
+		}
+		return 0;
+	}
+}
+
+public class NightRules : BaseRule
+{
+	public NightRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Paddle);
+		bad.Add (KeyAction.Reach);
+		bad.Add (KeyAction.Reach);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
 		if (wooee.env == EnvironmentType.Night) {
-			if (lastMove == KeyAction.Reach) {
-				if ((KeyAction)player.danceMoves[-2] == KeyAction.Reach) {
-					return 2*RuleBook.baseScore;
-				}
-			}
-			if (lastMove == KeyAction.Twist) {
-				if ((KeyAction)player.danceMoves[-2] == KeyAction.Twist) {
-					return -2*RuleBook.baseScore;
-				}
-			}
+			return getDelta (player);
+		}
+		return 0;
+	}
+}
+
+public class DayRules : BaseRule
+{
+	public DayRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Twist);
+		good.Add (KeyAction.Twist);
+		bad.Add (KeyAction.Down);
+		bad.Add (KeyAction.Down);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.env == EnvironmentType.Night) {
+			return getDelta (player);
+		}
+		return 0;
+	}
+}
+
+public class FezRules : BaseRule
+{
+	public FezRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Reach);
+		good.Add (KeyAction.Twist);
+		bad.Add (KeyAction.Down);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.trait == CharacterTrait.Fez) {
+			return getDelta (player);
+		}
+		return 0;
+	}
+}
+
+public class BowtieRules : BaseRule
+{
+	public BowtieRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Reach);
+		good.Add (KeyAction.Down);
+		good.Add (KeyAction.Paddle);
+		bad.Add (KeyAction.Twist);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.trait == CharacterTrait.Bowtie) {
+			return getDelta (player);
+		}
+		return 0;
+	}
+}
+
+public class StacheRules : BaseRule
+{
+	public StacheRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Twist);
+		good.Add (KeyAction.Paddle);
+		good.Add (KeyAction.Down);
+		bad.Add (KeyAction.Reach);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.trait == CharacterTrait.Stache) {
+			return getDelta (player);
 		}
 		return 0;
 	}
@@ -191,7 +287,14 @@ public class RuleBook : MonoBehaviour, IRule {
 			new FailSucks(),
 			new Combos(),
 			new GiantsRules(),
-			new DwarfRules()
+			new DwarfRules(),
+			new RedRules(),
+			new BlueRules(),
+			new NightRules(),
+			new DayRules(),
+			new FezRules(),
+			new BowtieRules(),
+			new StacheRules()
 		};
 	}
 
