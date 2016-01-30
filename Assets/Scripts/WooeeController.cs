@@ -7,14 +7,24 @@ using UnityEngine.UI;
 
 
 public enum CharacterType { Cat };
-public enum CharacterTrait { A, B ,C };
+public enum CharacterTrait { Stache, Fez ,Bowtie, Normal };
 public enum CharacterSize { Giant, Normal, Dwarf };
 public enum CharacterColor { Blue, Red, Normal };
 public enum EnvironmentType { Day, Night };
 
+
+
 public class WooeeController : MonoBehaviour {
     // [0,1]
     public float affection;
+
+	public float affectionDiffThresh;
+	public int affectionDiffMoves;
+
+	float[] affectionHist;
+	int affectionHistIndex = 0;
+
+	public Sprite[] sprites;
 
     // characteristics
     public bool randomizeCharacteristics;
@@ -28,35 +38,37 @@ public class WooeeController : MonoBehaviour {
 	public GameObject ruleBookObject;
     RuleBook ruleBook;
 
-	public GameObject wooeeTextObject;
-	Text wooeeText;
-
 	public GameObject backgroundObject;
 	public Sprite[] backgrounds;
+
+//	Diversifiers
+	public GameObject stache;
+	public GameObject fez;
+	public GameObject bowtie;
+
+	Animator animator;
+
+	public GameObject endSceneObject;
 
 
     // Use this for initialization
     void Start () {
 		ruleBook = ruleBookObject.GetComponent<RuleBook> ();
-		wooeeText = wooeeTextObject.GetComponent<Text> ();
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
-
-		wooeeText.text = type.ToString() + "\n" 
-			+ trait.ToString() + "\n" 
-			+ size.ToString() + "\n" 
-			+ color.ToString();
+			
+		if (trait != CharacterTrait.Stache) {
+			stache.SetActive (false);
+		}
+		if (trait != CharacterTrait.Fez) {
+			fez.SetActive (false);
+		}
+		if (trait != CharacterTrait.Bowtie) {
+			bowtie.SetActive (false);
+		}
 
 		SpriteRenderer renderer = GetComponentInParent<SpriteRenderer> ();
-		switch (color) {
-		case CharacterColor.Blue:
-			renderer.color = Color.HSVToRGB (160 / 255.0f, 200 / 255.0f, 255 / 255.0f);
-			break;
-		case CharacterColor.Red:
-			renderer.color = Color.HSVToRGB (0 / 255.0f, 200 / 255.0f, 255 / 255.0f);
-			break;
-		}
 		switch (size) {
 		case CharacterSize.Dwarf:
 			renderer.transform.localScale -= new Vector3 (0.5f, 0.5f, 0.0f);
@@ -67,11 +79,32 @@ public class WooeeController : MonoBehaviour {
 			renderer.transform.transform.position += new Vector3 (-0.25f, 0.5f);
 			break;
 		}
+		Sprite sprite = sprites[0];
+		switch (color) {
+		case CharacterColor.Blue:
+			sprite = sprites [1];
+			endSceneObject.GetComponent<Animator> ().SetInteger ("CatType", 1);
+			break;
+		case CharacterColor.Red:
+			sprite = sprites [2];
+			endSceneObject.GetComponent<Animator> ().SetInteger ("CatType", 2);
+			break;
+		}
+		renderer.sprite = sprite;
 
 		if (env == EnvironmentType.Day) {
 			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [0];
 		} else {
 			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [1];
+		}
+
+		animator = GetComponent<Animator> ();
+		affectionHist = new float[affectionDiffMoves];
+	}
+
+	void resetAffectionHist() {
+		for (int i = 0; i < affectionHist.Length; ++i) {
+			affectionHist [i] = affection;
 		}
 	}
 	
@@ -103,6 +136,25 @@ public class WooeeController : MonoBehaviour {
 	public float reactToMove(KeyAction danceMove, float accuracy, PlayerController player) {
 		float delta = ruleBook.getAffectionDelta(danceMove, accuracy, this, player);
 		affection += delta;
+
+		affectionHist [affectionHistIndex] = affection;
+		affectionHistIndex = (affectionHistIndex + 1) % affectionHist.Length;
+		float diff = 0;
+		float lastAffect = affectionHist[affectionHistIndex];
+		for (int i = 0; i < affectionHist.Length; ++i) {
+			float currAffect = affectionHist [(affectionHistIndex + i) % affectionHist.Length];
+			diff += (currAffect - lastAffect);
+			lastAffect = currAffect;
+			if (Math.Abs (diff) > this.affectionDiffThresh) {
+				if (diff > this.affectionDiffThresh) {
+					this.animator.SetTrigger ("Blush");
+				} else {
+				}
+				this.resetAffectionHist ();
+			}
+		}
+
 		return delta;
+		
     }
 }
