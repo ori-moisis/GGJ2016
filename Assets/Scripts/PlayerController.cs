@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip failSound;
 	public AudioClip missSound;
 	public AudioClip hitNoteSound;
+	public AudioClip comboSound;
 
 
 	// Use this for initialization
@@ -47,6 +48,15 @@ public class PlayerController : MonoBehaviour {
 			break;
 		case KeyAction.Miss:
 			audio.PlayOneShot (missSound);
+			break;
+		case KeyAction.BitchCombo:
+			audio.PlayOneShot (comboSound);
+			break;
+		case KeyAction.DoNotStopCombo:
+			audio.PlayOneShot (comboSound);
+			break;
+		case KeyAction.RiseCombo:
+			audio.PlayOneShot (comboSound);
 			break;
 		default:
 			audio.PlayOneShot (hitNoteSound);
