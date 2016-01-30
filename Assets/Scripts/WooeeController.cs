@@ -22,6 +22,8 @@ public class WooeeController : MonoBehaviour {
 	float[] affectionHist;
 	int affectionHistIndex = 0;
 
+	public Sprite[] sprites;
+
     // characteristics
     public bool randomizeCharacteristics;
     public CharacterType type;
@@ -57,14 +59,6 @@ public class WooeeController : MonoBehaviour {
 			+ color.ToString();
 
 		SpriteRenderer renderer = GetComponentInParent<SpriteRenderer> ();
-		switch (color) {
-		case CharacterColor.Blue:
-			renderer.color = Color.HSVToRGB (160 / 255.0f, 200 / 255.0f, 255 / 255.0f);
-			break;
-		case CharacterColor.Red:
-			renderer.color = Color.HSVToRGB (0 / 255.0f, 200 / 255.0f, 255 / 255.0f);
-			break;
-		}
 		switch (size) {
 		case CharacterSize.Dwarf:
 			renderer.transform.localScale -= new Vector3 (0.5f, 0.5f, 0.0f);
@@ -75,6 +69,16 @@ public class WooeeController : MonoBehaviour {
 			renderer.transform.transform.position += new Vector3 (-0.25f, 0.5f);
 			break;
 		}
+		Sprite sprite = sprites[0];
+		switch (color) {
+		case CharacterColor.Blue:
+			sprite = sprites [1];
+			break;
+		case CharacterColor.Red:
+			sprite = sprites [2];
+			break;
+		}
+		renderer.sprite = sprite;
 
 		if (env == EnvironmentType.Day) {
 			backgroundObject.GetComponent<SpriteRenderer> ().sprite = backgrounds [0];
