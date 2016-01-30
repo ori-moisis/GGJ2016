@@ -179,7 +179,7 @@ public class NightRules : IRule
 public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
 
-	public static float baseScore = 0.02f;
+	public static float baseScore = 0.01f;
 
 	public RuleBook() {
 		rules = new IRule[] {

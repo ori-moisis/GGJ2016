@@ -16,16 +16,22 @@ public class PlayerController : MonoBehaviour {
 	public AudioClip hitNoteSound;
 	public AudioClip comboSound;
 
+	public float aproachiingFactor = 10;
+
+	public Vector3 startingPosition;
+
 
 	// Use this for initialization
 	void Start () {
 		danceMoves = new ArrayList ();
 		woowee = wooweeObject.GetComponent<WooeeController> ();
         messageController = messageObject.GetComponent<MessageController> ();
+		startingPosition = this.transform.position;
     }
 	
 	// Update is called once per frame
 	void Update () {
+		this.transform.position = startingPosition - new Vector3 (woowee.affection-0.5f, 0.0f, 0.0f) * aproachiingFactor;
     }
 		
 	void animateDanceMove(KeyAction danceMove) {
