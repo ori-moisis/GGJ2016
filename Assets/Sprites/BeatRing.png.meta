@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f8d63f89474a2482cb95aaa1c5b7b074
-timeCreated: 1454086745
+guid: 7f9dca98454fd48b295000d2f979f0c4
+timeCreated: 1454128712
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -29,9 +29,9 @@ TextureImporter:
   textureFormat: -3
   maxTextureSize: 2048
   textureSettings:
-    filterMode: 1
+    filterMode: 2
     aniso: 16
-    mipBias: 0
+    mipBias: -1
     wrapMode: 1
   nPOTScale: 0
   lightmap: 0
@@ -41,7 +41,7 @@ TextureImporter:
   spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 5
+  alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
@@ -50,11 +50,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites: []
-    outline:
-    - - {x: 0, y: 0}
-      - {x: 0, y: 4}
-      - {x: 4, y: 4}
-      - {x: 4, y: 0}
+    outline: []
   spritePackingTag: 
   userData: 
   assetBundleName: 

@@ -6,24 +6,33 @@ using System.Collections.Generic;
 public class BeatsBarScript : MonoBehaviour {
 
 	public GameObject moveManagerObject;
-	MoveManager moveManager;
-	public AudioSource aud;
-	public GameObject mark;
-	public GameObject rectangle;
-	public GameObject beatPrefab;
-	public int barLengthSeconds = 3;
-	public float threshold = 0.5f;
+
 	public int beatSkip = 2;
-	public Queue<float> beatVals;
-	public Queue<Beat> curBeats;
 
+	public float barLengthSeconds = 3.0f;
+	public float threshold = 0.5f;
+	public GameObject barArea;
+	public GameObject beatPrefab;
+	public GameObject comboPrefab;
+	public GameObject ringPrefab;
+	public GameObject mark;
 
+	private float unitsPerSecond;
 
-	private Vector3 barLeft;
+	private AudioSource aud;
+	private Queue<float> beatVals;
+	private Queue<Beat> curBeats;
 
+	private bool nextIsCombo;
+	private MoveManager moveManager;
 
 	// Use this for initialization
-	void Start () {		
+	void Start () {
+		nextIsCombo = false;
+
+		float rightBarUnits = Mathf.Abs(barArea.transform.position.x - mark.transform.position.x);
+		unitsPerSecond = rightBarUnits / barLengthSeconds;
+
 		// Audio	
 		aud = GetComponent<AudioSource> ();
 		aud.Play ();
@@ -33,11 +42,6 @@ public class BeatsBarScript : MonoBehaviour {
 
 		// Move manager
 		moveManager = moveManagerObject.GetComponent<MoveManager>();
-
-		Bounds barBounds = rectangle.GetComponent<Renderer> ().bounds;
-		barLeft = new Vector3 (barBounds.min.x, barBounds.center.y);
-
-		mark.transform.position = barLeft + new Vector3 (secondsToOffset(0.0f), 0.0f);
 	}
 
 	// Update is called once per frame
@@ -46,37 +50,42 @@ public class BeatsBarScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-		updateSquares ();
+		updateBeatGfx ();
 	}
 
 	void updateBeats() {
 		float t = aud.time;
 		while (beatVals.Count != 0 && beatVals.Peek () <= t + barLengthSeconds) {
 			float beatTime = beatVals.Dequeue ();
-			GameObject obj = Instantiate (beatPrefab) as GameObject;
-			curBeats.Enqueue (new Beat(beatTime, obj));
+			GameObject beatGfx;
+			if (nextIsCombo) {
+				nextIsCombo = false;
+				beatGfx = Instantiate (comboPrefab) as GameObject;
+			} else {
+				beatGfx = Instantiate (beatPrefab) as GameObject;
+			}
+			curBeats.Enqueue (new Beat(beatTime, beatGfx));
 		}
 
 		while (curBeats.Count != 0 && curBeats.Peek ().RelativeTime(t) <= -threshold) {
 			Beat beat = curBeats.Dequeue ();
-			Destroy (beat.obj);
+			Destroy (beat.gfx);
 
 			// Consider this case as a miss, and send "miss" to Barak the shark
 			moveManager.handleAction(KeyAction.Miss, 0f);
 		}
 	}
 
-	void updateSquares() {
+	void updateBeatGfx() {
 		foreach (Beat beat in curBeats) {
 			beat.RelativeTime (aud.time);
-			float offsetX = secondsToOffset (beat.relativeTime);
-			beat.obj.transform.position = barLeft + new Vector3(offsetX, 0.0f);
+			beat.gfx.transform.position = new Vector3 (secondsToPosition (beat.relativeTime), mark.transform.position.y);
 			beat.Show ();
 		}
 	}
 
-	float secondsToOffset(float relativeTime) {
-		return (relativeTime + threshold) / (barLengthSeconds + threshold) * rectangle.transform.localScale.x;
+	float secondsToPosition(float relativeTime) {
+		return mark.transform.position.x + relativeTime * unitsPerSecond;
 	}
 
 	Queue<float> getBeatVals(string filename) {
@@ -100,10 +109,16 @@ public class BeatsBarScript : MonoBehaviour {
 	public void input(KeyAction k) {
 		float acc = 0;
 		if (Mathf.Abs (curBeats.Peek ().RelativeTime(aud.time)) <= threshold) {
-			// TODO: animate removal
 			Beat b = curBeats.Dequeue ();
-			acc = Mathf.Abs (b.relativeTime) / threshold;
-			Destroy (b.obj);
+			// TODO: animate removal
+			acc = (threshold - Mathf.Abs (b.relativeTime)) / threshold;
+			GameObject ringGfx = Instantiate (ringPrefab) as GameObject;
+			ringGfx.transform.position = b.gfx.transform.position;
+			Animator animator = ringGfx.GetComponent<Animator> ();
+			AnimationClip beatHitClip = animator.runtimeAnimatorController.animationClips [0];
+			animator.Play (beatHitClip.name);
+			Destroy (ringGfx, beatHitClip.length);
+			Destroy (b.gfx, beatHitClip.length);
 		} else {
 			k = KeyAction.Fail;
 			aud.time = aud.time - 0.1f;
@@ -114,6 +129,7 @@ public class BeatsBarScript : MonoBehaviour {
 	}
 
 	public void comboHighlightNextBeat() {
+		nextIsCombo = true;
 	}
 }
 
@@ -121,26 +137,27 @@ public class Beat {
 	// Times are in seconds
 	public float beatTime;
 	public float relativeTime;
-	public bool isCombo;
-	public GameObject obj;
+	public bool isDying;
+	public GameObject gfx;
 
-	public Beat(float beatTime, GameObject obj) {
+	public Beat(float beatTime, GameObject gfx) {
+		this.isDying = false;
 		this.beatTime = beatTime;
 		this.relativeTime = beatTime;
-		this.isCombo = false;
-		this.obj = obj;
-		this.obj.SetActive (false);
-		this.obj.GetComponent<Renderer> ().enabled = false;
+		this.gfx = gfx;
+		this.gfx.SetActive (false);
+		this.gfx.GetComponent<Renderer> ().enabled = false;
 	}
 
 	public void Show() {
-		this.obj.SetActive (true);
-		this.obj.GetComponent<Renderer> ().enabled = true;
+		this.gfx.SetActive (true);
+		this.gfx.GetComponent<Renderer> ().enabled = true;
 	}
 
 	public float RelativeTime(float currentTime) {
 		return (this.relativeTime = this.beatTime - currentTime);
 	}
+		
 }
 
 public enum KeyAction {Paddle, Reach, Twist, Down, Miss, Fail, 
