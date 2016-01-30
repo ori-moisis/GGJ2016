@@ -1,9 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class InputManager : MonoBehaviour {
 
 	public GameObject beatBarObject;
+	public GameObject[] buttons;
 	BeatsBarScript beatBar;
 
 	// Use this for initialization
@@ -13,21 +15,21 @@ public class InputManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		string button = null;
-		if (Input.GetKeyUp (KeyCode.A)) {
-			button = "A";
+		GameObject button = null;
+		if (Input.GetKeyDown (KeyCode.A)) {
+			button = buttons [0];
 		}
-		if (Input.GetKeyUp (KeyCode.S)) {
-			button = "B";
+		if (Input.GetKeyDown (KeyCode.S)) {
+			button = buttons [1];
 		}
-		if (Input.GetKeyUp (KeyCode.D)) {
-			button = "C";
+		if (Input.GetKeyDown (KeyCode.D)) {
+			button = buttons [2];
 		}
-		if (Input.GetKeyUp (KeyCode.F)) {
-			button = "D";
+		if (Input.GetKeyDown (KeyCode.F)) {
+			button = buttons [3];
 		}
 		if (button != null) {
-			HandleButtonPress (button);
+			button.GetComponent<Button> ().onClick.Invoke ();
 		}
 	}
 
