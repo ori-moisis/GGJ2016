@@ -7,10 +7,12 @@ using UnityEngine.UI;
 
 
 public enum CharacterType { Cat };
-public enum CharacterTrait { A, B ,C };
+public enum CharacterTrait { Stache, Fez ,Bowtie, Normal };
 public enum CharacterSize { Giant, Normal, Dwarf };
 public enum CharacterColor { Blue, Red, Normal };
 public enum EnvironmentType { Day, Night };
+
+
 
 public class WooeeController : MonoBehaviour {
     // [0,1]
@@ -42,6 +44,11 @@ public class WooeeController : MonoBehaviour {
 	public GameObject backgroundObject;
 	public Sprite[] backgrounds;
 
+//	Diversifiers
+	public GameObject stache;
+	public GameObject fez;
+	public GameObject bowtie;
+
 	Animator animator;
 
 
@@ -52,6 +59,17 @@ public class WooeeController : MonoBehaviour {
         if (randomizeCharacteristics) {
             generateRandomCharacteristics();
         }
+			
+		if (trait != CharacterTrait.Stache) {
+			stache.SetActive (false);
+		}
+		if (trait != CharacterTrait.Fez) {
+			fez.SetActive (false);
+		}
+		if (trait != CharacterTrait.Bowtie) {
+			bowtie.SetActive (false);
+		}
+
 
 		wooeeText.text = type.ToString() + "\n" 
 			+ trait.ToString() + "\n" 
