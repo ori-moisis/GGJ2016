@@ -37,8 +37,14 @@ public class WellTimedMove : IRule
 		if (KeyActionHelper.isFail(lastMove)) {
 			return 0;
 		}
+		if (wooee.affection < 0.3) {
+			return 6 * RuleBook.baseScore * accuracy;
+		} else if (wooee.affection < 0.6) {
+			return RuleBook.baseScore * accuracy;
+		}
+		return 0;
 
-		return RuleBook.baseScore * accuracy;
+
     }
 }
 
@@ -64,7 +70,7 @@ public class RepetativePenalty : IRule
 			ArrayList prevSequence = player.danceMoves.GetRange(player.danceMoves.Count - 2*i, i);
 			ArrayList currentSequence = player.danceMoves.GetRange(player.danceMoves.Count - i, i);
 			if (prevSequence.Cast<object>().SequenceEqual(currentSequence.Cast<object>())) {
-				return - i * RuleBook.baseScore * 4;
+				return - i * RuleBook.baseScore * 8;
 			}
 		}
 		return 0;
@@ -93,7 +99,7 @@ public class Combos : IRule
 	{
 		if (KeyActionHelper.isCombo (lastMove)) {
 			if (wooee.affection < minAffection) {
-				return -2 * RuleBook.baseScore;
+				return 1 * RuleBook.baseScore;
 			} else {
 				return 3 * RuleBook.baseScore;
 			}
