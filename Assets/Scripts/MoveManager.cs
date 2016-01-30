@@ -5,13 +5,27 @@ using System.Linq;
 // maps actions to dance moves, including replacing relevant moves with combos if applicable.
 public class MoveManager : MonoBehaviour {
     public class Combo : object {
-        public ArrayList moveSequence;
+		public KeyAction[] moveSequence;
         public KeyAction comboMove;
 
         public Combo(KeyAction comboMove, KeyAction[] moveSequence) {
             this.comboMove = comboMove;
-            this.moveSequence = new ArrayList(moveSequence);
+            this.moveSequence = moveSequence;
         }
+
+		public bool isOneBeforeCombo(ArrayList prevMoves) {
+			if (prevMoves.Count < (this.moveSequence.Length - 1)) {
+				return false;
+			}
+			int prevI = prevMoves.Count - (this.moveSequence.Length - 1);
+			int comboI = 0;
+			for (; comboI < this.moveSequence.Length - 1; ++comboI, ++prevI) {
+				if (this.moveSequence [comboI] != (KeyAction)prevMoves [prevI]) {
+					return false;
+				}
+			}
+			return true;
+		}
     }
 
     public GameObject playerObject;
@@ -46,20 +60,18 @@ public class MoveManager : MonoBehaviour {
             return move;
         }
 
-        if (!isOneMoveFromCombo()) {
-            return move;
-        }
+        //if (!isOneMoveFromCombo()) {
+        //    return move;
+        //}
 
         foreach (Combo combo in combos) {
-            int comboLength = combo.moveSequence.Count;
+			int comboLength = combo.moveSequence.Length;
 			if (previousMoves.Count < comboLength) {
 				continue;
 			}
-            ArrayList relevantMoves = previousMoves.GetRange(previousMoves.Count - comboLength, comboLength - 1);
-            relevantMoves.Add(move);
-            if (relevantMoves.Cast<object>().SequenceEqual(combo.moveSequence.Cast<object>())) {
-                return combo.comboMove;
-            }
+			if (combo.isOneBeforeCombo (previousMoves) && combo.moveSequence [comboLength - 1] == move) {
+				return combo.comboMove;
+			}
         }
         return move;
     }
@@ -72,14 +84,9 @@ public class MoveManager : MonoBehaviour {
         }
 
         foreach (Combo combo in combos) {
-            int comboLength = combo.moveSequence.Count;
-			if (previousMoves.Count < (comboLength - 1)) {
-				continue;
+			if (combo.isOneBeforeCombo (previousMoves)) {
+				return true;
 			}
-            ArrayList relevantPreviousMoves = previousMoves.GetRange(previousMoves.Count - (comboLength - 1), comboLength - 1);
-            if (relevantPreviousMoves.Cast<object>().SequenceEqual(combo.moveSequence.GetRange(0, comboLength - 1).Cast<object>())) {
-                return true;
-            }
         }
         return false;
     }
