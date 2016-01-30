@@ -9,6 +9,27 @@ public interface IRule
 	float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player);
 }
 
+public class BaseRule : IRule {
+	public ArrayList good = new ArrayList ();
+	public ArrayList bad = new ArrayList ();
+	public float goodFactor;
+	public float badFactor;
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		return getDelta (player);
+	}
+
+	public float getDelta(PlayerController player) {
+		if ( RuleBook.sequenceJustOccured(good, player)) {
+			return goodFactor * RuleBook.baseScore * good.Count;
+		}
+		if ( RuleBook.sequenceJustOccured(bad, player)) {
+			return -badFactor * RuleBook.baseScore * bad.Count;
+		}
+		return 0;		
+	}
+}
+
 public class WellTimedMove : IRule
 {
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
@@ -20,6 +41,7 @@ public class WellTimedMove : IRule
 		return RuleBook.baseScore * accuracy;
     }
 }
+
 
 public class RepetativePenalty : IRule
 {
@@ -42,24 +64,9 @@ public class RepetativePenalty : IRule
 			ArrayList prevSequence = player.danceMoves.GetRange(player.danceMoves.Count - 2*i, i);
 			ArrayList currentSequence = player.danceMoves.GetRange(player.danceMoves.Count - i, i);
 			if (prevSequence.Cast<object>().SequenceEqual(currentSequence.Cast<object>())) {
-				Debug.Log(i);
-				Debug.Log("Rep");
 				return - i * RuleBook.baseScore;
 			}
 		}
-
-//		if (player.danceMoves.Count > 2) {
-//			int i = Math.Max (0, player.danceMoves.Count - HistoryCount);
-//			int count = 0;
-//			for (; i < player.danceMoves.Count - 1; ++i) {
-//				if (lastMove == (KeyAction)player.danceMoves [i]) {
-//					++count;
-//				}
-//			}
-//			return - Mathf.Abs(count - MaxAllowed) * RuleBook.baseScore * Multiplier;
-//		}
-//
-//		return RuleBook.baseScore * accuracy;
 		return 0;
 	}
 }
@@ -96,60 +103,56 @@ public class Combos : IRule
 	}
 }
 
-public class GiantsRules : IRule
+public class GiantsRules : BaseRule
 {
-	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
-	{
-		ArrayList good = new ArrayList ();
+	public GiantsRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
 		good.Add (KeyAction.Paddle);
 		good.Add (KeyAction.Reach);
+		bad.Add (KeyAction.Paddle);
+	}
 
-		ArrayList good2 = new ArrayList ();
-		good2.Add (KeyAction.Paddle);
-		good2.Add (KeyAction.Twist);
-
-		if ( RuleBook.sequenceJustOccured(good, player)) {
-			return 3*RuleBook.baseScore;
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
+		if (wooee.size == CharacterSize.Giant) {
+			return getDelta (player);
 		}
-
-		if ( RuleBook.sequenceJustOccured(good2, player)) {
-			return 3*RuleBook.baseScore;
-		}
-
-
-		if (player.danceMoves.Count <= 1) {
-			return RuleBook.baseScore * accuracy;			
-		}
-
 		return 0;
 	}
 }
 
 
-public class DwarfRules : IRule
+public class DwarfRules : BaseRule
 {
-	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
-	{
+	public DwarfRules() {
+		goodFactor = 3.0f;
+		badFactor = 1.0f;
+		good.Add (KeyAction.Twist);
+		good.Add (KeyAction.Twist);
+		bad.Add (KeyAction.Down);
+	}
+
+	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player) {
 		if (wooee.size == CharacterSize.Dwarf) {
-			if (lastMove == KeyAction.Reach) {
-				return -RuleBook.baseScore;
-			}
-			if (lastMove == KeyAction.Down) {
-				return RuleBook.baseScore;
-			}
+			return getDelta (player);
 		}
 		return 0;
 	}
 }
 
-public class RedRules : IRule
+public class RedRules : BaseRule
 {
+
+	public RedRules() {
+		goodFactor = 0.0f;
+		badFactor = 1.0f;
+		bad.Add (KeyAction.Paddle);
+	}
+
 	public float getAffectionDelta(KeyAction lastMove, float accuracy, WooeeController wooee, PlayerController player)
 	{
 		if (wooee.color == CharacterColor.Red) {
-			if (lastMove == KeyAction.Paddle) {
-				return -RuleBook.baseScore;
-			}
+			return getDelta (player);
 		}
 		return 0;
 	}
@@ -179,7 +182,7 @@ public class NightRules : IRule
 public class RuleBook : MonoBehaviour, IRule {
     IRule[] rules;
 
-	public static float baseScore = 0.02f;
+	public static float baseScore = 0.01f;
 
 	public RuleBook() {
 		rules = new IRule[] {
@@ -187,7 +190,8 @@ public class RuleBook : MonoBehaviour, IRule {
 			new RepetativePenalty(),
 			new FailSucks(),
 			new Combos(),
-			new GiantsRules()
+			new GiantsRules(),
+			new DwarfRules()
 		};
 	}
 

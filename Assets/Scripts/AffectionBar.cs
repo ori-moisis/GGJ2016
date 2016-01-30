@@ -5,6 +5,8 @@ using System.Collections;
 public class AffectionBar : MonoBehaviour {
 
 	public GameObject wooweeObject;
+
+	public Image fill;
 	WooeeController woowee;
 	Slider slider;
 
@@ -17,5 +19,6 @@ public class AffectionBar : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		slider.value = woowee.affection;
+		fill.fillAmount = slider.value;
 	}
 }
