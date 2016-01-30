@@ -44,3 +44,6 @@ TagManager:
   - name: mmark Layer
     uniqueID: 259148595
     locked: 0
+  - name: Effects
+    uniqueID: 143527755
+    locked: 0
